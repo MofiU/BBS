@@ -32,6 +32,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap-table'
+end
+
+
+
 #role and premisssion
 gem 'devise'
 gem 'rolify'
@@ -39,6 +46,8 @@ gem 'cancancan'
 gem 'font-awesome-sass-rails'
 gem 'activerecord-session_store'
 gem 'simple_form'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
