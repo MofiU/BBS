@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>Log in</h2></div>
+  <div class="panel-body">
+    <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+      <% if flash[:alert].present? %>
+        <div class="alert alert-warning" role="alert"><%= flash[:alert] %></div>
+      <% end %>
+      <%= f.input :email, label: false, placeholder: 'Email/Username' %>
+      <%= f.input :password, label: false, placeholder: 'Password' %>
+      <%= f.button :submit, 'Log In' %>
+    <% end %>
+  </div>
+  <div class="panel-footer"><%= render "users/shared/links" %></div>
+</div>

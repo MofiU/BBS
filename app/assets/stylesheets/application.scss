@@ -1,0 +1,169 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'font-awesome';
+
+
+* {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+body {
+  background:#E9EAED;
+  font:normal 12px/22px 宋体;
+}
+
+.main{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+img {
+  border:0;
+}
+a {
+  text-decoration:none;
+  color:#333;
+}
+a:hover {
+  color:#FF8400;
+}
+.clearfix:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.topNav {
+  position:relative;
+  z-index:1;
+  height:80px;
+  line-height:40px;
+  border-top:3px solid #ff8500;
+  border-bottom:1px solid #EDEEF0;
+  background-color:#FCFCFC;
+  font-family:"Microsoft YaHei",SimSun;
+  font-size:12px;
+  margin-bottom: 15px;
+}
+.topNav-width {
+  width:1000px;
+  margin:0 auto;
+}
+.topNav h3 {
+  font-weight:normal;
+  font-size:100%;
+}
+.topNav dl {
+  zoom:1;
+}
+.topNav .tnLeft {
+  float:left;
+}
+.topNav .tnRight {
+  float:right;
+}
+.topNav dd {
+  float:left;
+  position:relative;
+}
+.topNav dd h3 {
+  float:left;
+}
+.topNav dd h3 a {
+  display:inline-block;
+  *display:inline;
+  zoom:1;
+  height:40px;
+  line-height:14px;
+  padding:13px 20px;
+}
+.topNav dd h3 a i {
+  display:inline-block;
+  width:8px;
+  height:5px;
+  margin:0 0 0 5px;
+  overflow:hidden;
+  vertical-align:middle;
+  font-size:12px;
+  line-height:13px;
+  background:image-url('icon.png') 0 -61px no-repeat;
+}
+.topNav dd h3 a:hover,.topNav dd.on h3 a {
+  background:#EDEEF0;
+  color:#FF8400;
+}
+.topNav .welcome {
+  padding-right:15px;
+  color:#FF8400;
+}
+.topNav .welcome a {
+  color:#FF8400;
+}
+.topNav dd ul {
+  display:none;
+  position:absolute;
+  width:110px;
+  top:40px;
+  left:0;
+  border:1px solid #FECC5B;
+  border-top:0;
+  background:#fff;
+  -moz-box-shadow:3px 3px 3px rgba(0,0,0,.1);
+  -webkit-box-shadow:3px 3px 3px rgba(0,0,0,.1);
+  box-shadow:3px 3px 3px rgba(0,0,0,.1);
+}
+.topNav dd ul li {
+  line-height:31px;
+  border-bottom:1px solid #FECC5B;
+}
+.topNav dd ul li a {
+  display:block;
+  color:#333;
+  padding:0 15px;
+}
+.topNav dd ul li a:hover {
+  background:#FFF5DA;
+  color:#E67902;
+}
+.topNav dd ul li a span {
+  color:#FF8400;
+  margin-left:5px;
+}
+
+.panel {
+  border: 0px;
+  border-radius: 3px;
+  border: 1px;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  margin-bottom: 15px;
+/*  box-shadow: 0 0px 3px 2px rgba(0, 0, 0, 0.03); */
+
+  .panel-heading {
+    background: #fafafa;
+    padding: 6px 15px;
+    border-bottom-color: #eee;
+    color: #777;
+  }
+  .panel-footer {
+    padding: 6px 15px;
+    border-top-color: #eee;
+    background: #fafafa;
+  }
+}
