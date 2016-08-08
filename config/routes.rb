@@ -23,11 +23,11 @@ Rails.application.routes.draw do
     resources :replies
   end
 
-  namespace :user do
+  namespace :users do
+    resources :topics
     resources :replies
     resources :notes
     resources :photos
-    resources :topics
   end
 
   match '*path', via: :all, to: 'home#index'
