@@ -1,32 +1,15 @@
-<div class="panel panel-default">
+<div id="notes"  class="panel panel-default">
+  <div class="panel-heading">Notes</div>
   <div class="panel-body">
-    <table data-toggle="table"
-           data-toolbar="#toolbar"
-           data-page-list="[10, 25, 50, 100, ALL]"
-           data-show-columns="true"
-           data-show-pagination-switch="true"
-           data-show-refresh="true"
-           data-search="true"
-           data-pagination="true"
-           data-response-handler="responseHandler"
-           data-key-events="true">
-    </table>
+    <% @notes.each do |note| %>
+      <div class="media">
+        <div class="media-body">
+          <div class="media-heading"><h5><b><%= link_to note.title, users_note_path(note) %></b></h5></div>
+          <div class="media-body info"><%= note.created_at %></div>
+          <div class="media-right"><i class="glyphicon glyphicon-pencil"></i></div>
+        </div>
+      </div>
+    <% end %>
   </div>
+  <div class="panel-footer"></div>
 </div>
-
-<script>
-  $('table').bootstrapTable({
-    columns: [{
-        field: 'id',
-        title: 'Item ID'
-    }, {
-        field: 'name',
-        title: 'Item Name'
-    }, {
-        field: 'price',
-        title: 'Item Price'
-    }],
-    data: <%= raw @notes.to_json %>
-});
-
-</script>

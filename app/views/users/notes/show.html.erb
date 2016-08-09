@@ -1,0 +1,16 @@
+<div id="note"  class="panel panel-default">
+  <div class="panel-heading">
+    <%= @note.created_at %>
+    <%= link_to edit_users_note_path(@note) do %><i class="glyphicon glyphicon-pencil"></i> <% end %>
+    <%= link_to users_note_path(@note), method: :delete do %><i class="glyphicon glyphicon-trash"></i> <% end %>
+  </div>
+  <div class="panel-body">
+    <div class="media">
+      <div class="media-body">
+        <div class="media-heading"><h5><b><%= @note.title %></b></h5></div>
+        <div class="media-body info"><%= @note.body %></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer"></div>
+</div>

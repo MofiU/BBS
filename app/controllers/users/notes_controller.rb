@@ -1,10 +1,11 @@
 class Users::NotesController < ApplicationController
-  def index
-    @notes = []
-    100.times do |i|
-      @notes << {id: i, name: "item#{i}", price: "$#{i}"}
-    end
-    # @notes = current_user.notes
 
+  def index
+    @notes = current_user.notes
   end
+
+  def show
+    @note = Note.find(params[:id])
+  end
+
 end

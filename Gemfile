@@ -47,6 +47,7 @@ gem 'font-awesome-sass-rails'
 gem 'activerecord-session_store'
 gem 'simple_form'
 
+gem "rubycritic", :require => false
 
 
 group :development, :test do
