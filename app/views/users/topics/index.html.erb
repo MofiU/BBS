@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div id="topics"  class="panel panel-default">
+      <div class="panel-heading">Topics</div>
+      <div class="panel-body">
+      <% if @topics.present? %>
+        <% @topics.each do |topic| %>
+          <div class="media">
+            <div class="media-body">
+              <div class="media-heading"><h5><b><%= link_to topic.title, users_topic_path(topic) %></b></h5></div>
+              <div class="media-body info"><%= topic.created_at %></div>
+              <div class="media-right"><%= link_to edit_users_topic_path(topic) do %><i class="glyphicon glyphicon-pencil"></i> <% end %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+      <div class="panel-footer"></div>
+    </div>
+  </div>
+  <%= render "sidebar" %>
+</div>

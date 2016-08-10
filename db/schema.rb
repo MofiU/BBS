@@ -12,12 +12,20 @@
 
 ActiveRecord::Schema.define(version: 20160805015947) do
 
+  create_table "nodes", force: :cascade do |t|
+    t.string   "category",   null: false
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notes", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "body"
     t.boolean  "public",     default: false, null: false
     t.integer  "word_count", default: 0
+    t.datetime "deleted_at"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_notes_on_user_id"
@@ -65,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160805015947) do
 
   create_table "topics", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "node_id"
     t.string   "title"
     t.text     "body"
     t.integer  "repelies_count", default: 0, null: false
@@ -76,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160805015947) do
     t.datetime "deleted_at"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["node_id"], name: "index_topics_on_node_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 

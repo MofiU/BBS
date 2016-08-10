@@ -1,0 +1,21 @@
+<div class="sidebar col-md-3">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <a href="<%= new_users_topic_path %>" class="btn btn-success btn-block">新建 Topic</a>
+    </div>
+    <div class="panel-footer"><a href="<%= users_topics_path %>">查看我的 <%= current_user.topics.count %> 条 Topic...</a></div>
+  </div>
+
+  <% if @recent_topics.present? %>
+    <div class="panel panel-default">
+      <div class="panel-heading">我最近创建的 Topic</div>
+      <ul class="list-group">
+        <% @recent_topics.each do |topic| %>
+          <li class="list-group-item">
+            <%= link_to topic.title, users_topic_path(topic) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

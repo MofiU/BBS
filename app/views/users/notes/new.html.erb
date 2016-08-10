@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div id="note"  class="panel panel-default ">
+      <div class="panel-body">
+      <!-- Dup code same with edit-->
+        <%= simple_form_for @note, url: users_notes_path do |f|%>
+          <ul class="nav nav-pills">
+            <li role="presentation" class="active edit"><a href="#">Edit</a></li>
+            <li role="presentation" class="preview"><a href="#">Preview</a></li>
+          </ul>
+          <%= f.input :title, label: false, placeholder: 'title' %>
+          <%= f.input :body, label: false, as: :text, :input_html => { :cols => 5, :rows => 20 } %>
+          <div class="row">
+            <div class="col-sm-3">
+              <%= f.button :submit, class: 'btn btn-primary btn-block' %>
+            </div>
+            <div class="col-sm-2">
+              <%= f.button :button, 'Cancel', class: 'btn btn-default btn-block' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= render "sidebar" %>
+</div>

@@ -1,15 +1,22 @@
-<div id="notes"  class="panel panel-default">
-  <div class="panel-heading">Notes</div>
-  <div class="panel-body">
-    <% @notes.each do |note| %>
-      <div class="media">
-        <div class="media-body">
-          <div class="media-heading"><h5><b><%= link_to note.title, users_note_path(note) %></b></h5></div>
-          <div class="media-body info"><%= note.created_at %></div>
-          <div class="media-right"><i class="glyphicon glyphicon-pencil"></i></div>
-        </div>
+<div class="row">
+  <div class="col-sm-9">
+    <div id="notes"  class="panel panel-default">
+      <div class="panel-heading">Notes</div>
+      <div class="panel-body">
+      <% if @notes.present? %>
+        <% @notes.each do |note| %>
+          <div class="media">
+            <div class="media-body">
+              <div class="media-heading"><h5><b><%= link_to note.title, users_note_path(note) %></b></h5></div>
+              <div class="media-body info"><%= note.created_at %></div>
+              <div class="media-right"><%= link_to edit_users_note_path(note) do %><i class="glyphicon glyphicon-pencil"></i> <% end %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
       </div>
-    <% end %>
+      <div class="panel-footer"></div>
+    </div>
   </div>
-  <div class="panel-footer"></div>
+  <%= render "sidebar" %>
 </div>

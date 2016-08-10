@@ -57,8 +57,8 @@
           <% end %></h3>
         <ul>
           <li><%= link_to '账户设置', root_path %></li>
-          <li><%= link_to '我的笔记', root_path %></li>
-          <li><%= link_to '我的主题', root_path %></li>
+          <li><%= link_to '我的笔记', users_notes_path %></li>
+          <li><%= link_to '我的主题', users_topics_path %></li>
           <li><%= link_to '我的收藏', root_path %></li>
           <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
         </ul>

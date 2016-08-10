@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
-  has_many :notes
+  has_many :notes, ->{where(deleted_at: nil)}
+  has_many :topics, ->{where(deleted_at: nil)}
 
 
   rolify

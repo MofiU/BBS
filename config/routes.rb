@@ -30,5 +30,5 @@ Rails.application.routes.draw do
     resources :photos
   end
 
-  match '*path', via: :all, to: 'home#index'
+  match '*path', via: :all, to: 'home#error_404'
 end
