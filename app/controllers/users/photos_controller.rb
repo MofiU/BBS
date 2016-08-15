@@ -1,2 +1,2 @@
-class Users::PhotosController < ApplicationController
+class Users::PhotosController < Users::ApplicationController
 end

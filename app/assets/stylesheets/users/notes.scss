@@ -2,17 +2,3 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#note{
-  .panel-heading{
-    .glyphicon-trash,
-    .glyphicon-pencil{
-      float:right;
-      margin-right: 10px;
-    }
-    .glyphicon-pencil:hover,
-    .glyphicon-trash:hover{
-      cursor:pointer;
-      background-color: #E9EAED;
-    }
-  }
-}

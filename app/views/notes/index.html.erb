@@ -7,9 +7,9 @@
           <% @notes.each do |note| %>
             <div class="media node">
               <div class="media-body">
-                <div class="media-heading"><h5><b><%= link_to note.title, users_note_path(note) %></b></h5></div>
+                <div class="media-heading"><h5><b><%= link_to note.title, note_path(note) %></b></h5></div>
                 <div class="media-body info"><%= note.created_at %></div>
-                <div class="media-right"><%= link_to edit_users_note_path(note) do %><i class="glyphicon glyphicon-pencil"></i> <% end %></div>
+                <div class="media-right"><%= link_to edit_note_path(note) do %><i class="glyphicon glyphicon-pencil"></i> <% end %></div>
               </div>
             </div>
           <% end %>

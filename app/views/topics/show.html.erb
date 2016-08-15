@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div class="panel panel-default topic-detail ">
+      <div class="panel-heading">
+        <div class="media-body">
+          <h1 class="media-heading"><%= @topic.title %></h1>
+          <div class="info">
+            <%= "由#{@topic.user.username}于#{@topic.updated_at}创建" %>
+          </div>
+        </div>
+        <div class="avatar media-right">
+          <a href="#"><img class="media-object" src="https://ruby-china-files.b0.upaiyun.com/user/avatar/1638.jpg!md" alt="1638"></a>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="media">
+          <div class="media-body">
+            <div class="media-body"><%= simple_format @topic.body %></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="opts">
+          <% if user_signed_in? %>
+            <%= link_to '#' do %><i class="fa fa-heart-o"></i><span><%= @topic.likes_count %>个赞</span><% end %>
+            <%= link_to '#' do %><i class="fa fa-eye"></i><span>关注</span><% end %>
+            <%= link_to '#' do %><i class="fa fa-bookmark"></i><span>收藏</span><% end %>
+            <% if owner?(@topic) || admin? %>
+              <%= link_to edit_topic_path do %><i class="fa fa-pencil"></i><span>编辑</span><% end %>
+              <%= link_to close_topic_path, method: :post do %><i class="fa fa-times"></i><span>关闭</span><% end %>
+              <% if can? :destroy, @topic %>
+                <%= link_to topic_path, method: :delete do %><i class="fa fa-trash-o"></i><span>删除</span><% end %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path do %><i class="fa fa-heart-o"></i><% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <%= render 'sidebar' %>
+  </div>
+</div>

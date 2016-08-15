@@ -16,7 +16,8 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'font-awesome';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 
 * {
@@ -34,11 +35,21 @@ body {
   margin-right: 15%;
 }
 
+footer {
+  margin-top: 10px; margin-bottom: 20px;
+  color: gray;
+  a { color: #666; }
+  .links { color: #ddd; }
+  .socials {
+    a { font-size: 20px; margin-right: 8px; }
+  }
+}
+
 img {
   border:0;
 }
 a {
-  text-decoration:none;
+  text-decoration: none !important;
   color:#333;
 }
 a:hover {

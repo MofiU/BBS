@@ -1,12 +1,12 @@
-class Users::NotesController < ApplicationController
+class Users::NotesController < Users::ApplicationController
   before_action :get_recent_notes, except: [:create, :destroy]
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   def index
     @notes = current_user.notes
   end
 
   def show
-    @note = Note.find(params[:id])
   end
 
   def new
@@ -14,8 +14,8 @@ class Users::NotesController < ApplicationController
   end
 
   def create
-    @note = Note.create(title: note_params[:title], body: note_params[:body], user_id: current_user.id)
-    if @note.valid?
+    @note = Note.new(title: note_params[:title], body: note_params[:body], user_id: current_user.id)
+    if @note.save
       redirect_to users_note_url(@note)
     else
       render 'new'
@@ -23,7 +23,6 @@ class Users::NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find(params[:id])
     if @note.update(note_params)
       redirect_to users_note_url(@note)
     else
@@ -32,12 +31,10 @@ class Users::NotesController < ApplicationController
   end
 
   def edit
-    @note = Note.find(params[:id])
   end
 
   def destroy
-    note = Note.find(params[:id])
-    note.update!(deleted_at: Time.now)
+    @note.destroy
     redirect_to users_notes_path
   end
 
@@ -49,6 +46,10 @@ class Users::NotesController < ApplicationController
 
   def get_recent_notes
     @recent_notes = current_user.notes.recently
+  end
+
+  def set_note
+    @note = Note.find(params[:id])
   end
 
 end

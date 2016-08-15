@@ -43,7 +43,7 @@ end
 gem 'devise'
 gem 'rolify'
 gem 'cancancan'
-gem 'font-awesome-sass-rails'
+gem 'font-awesome-sass'
 gem 'activerecord-session_store'
 gem 'simple_form'
 

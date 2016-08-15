@@ -1,6 +1,53 @@
 class TopicsController < ApplicationController
 
-  def index
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy,
+                                            :favorite, :unfavorite, :follow, :unfollow]
 
+  load_and_authorize_resource
+
+  def index
+    @topics = Topic.all
   end
+
+  def show
+  end
+
+  def new
+    @topic = Topic.new
+  end
+
+  def create
+    @topic = Topic.new(title: topic_params[:title], body: topic_params[:body], user_id: current_user.id)
+    if @topic.save
+      redirect_to topic_path(@topic)
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @topic.update(topic_params)
+      redirect_to topic_url(@topic)
+    else
+      render 'edit'
+    end
+  end
+
+  def close
+  end
+
+  def destroy
+    @topic.destroy
+    redirect_to topics_path
+  end
+
+  private
+
+  def topic_params
+    params.require(:topic).permit(:title, :body)
+  end
+
 end

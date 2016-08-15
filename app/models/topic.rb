@@ -4,4 +4,6 @@ class Topic < ApplicationRecord
   belongs_to :user
   belongs_to :node
   scope :recently, ->{order(created_at: :desc).limit(10)}
+  scope :cream, ->{where(cream: true, deleted: nil)}
+  scope :active, ->{where(deleted_at: nil)}
 end

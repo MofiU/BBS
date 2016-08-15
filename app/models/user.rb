@@ -1,7 +1,9 @@
 class User < ApplicationRecord
 
-  has_many :notes, ->{where(deleted_at: nil)}
-  has_many :topics, ->{where(deleted_at: nil)}
+  after_create_commit :empower
+
+  has_many :notes
+  has_many :topics
 
 
   rolify
@@ -26,4 +28,12 @@ class User < ApplicationRecord
     conditions = warden_conditions.dup
     find_by(username: conditions[:email]) || find_by(email: conditions[:email])
   end
+
+
+  private
+
+  def empower
+    add_role(:user)
+  end
+
 end

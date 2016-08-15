@@ -1,0 +1,41 @@
+<div class="topic_sidebar affix col-sm-2">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <a href="javaScript:void(0);" class="btn btn-block btn-sm btn-default scroll_top"><i class="fa fa-arrow-up"></i></a>
+      <div class="buttons">
+        <div class="likes">
+          <a href="#"><i class="fa fa-heart-o fa-5x"></i><br/> <span><%= @topic.likes_count %> 个赞</span></a>
+        </div>
+        <div class="group">
+          <div class="btn-group" role="group">
+            <a data-id="30794" class="follow btn btn-default" href="#"><i class="fa fa-eye"></i> 关注</a>
+            <a title="收藏" class="bookmark  btn btn-default" data-id="30794" href="#"><i class="fa fa-bookmark"></i> 收藏</a>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="reply-buttons">
+        <div class="total">
+          共收到 <b><%= @topic.replies_count %></b> 条回复
+        </div>
+        <%= link_to '参与回复', '#', class: 'btn btn-success btn-block' %>
+      </div>
+      <hr>
+      <div class="group opts">
+
+      </div>
+      <a href="javaScript:void(0);" class="btn btn-block btn-default scroll_bottom"><i class="fa fa-arrow-down"></i></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    // $(window).scroll(function() {
+    //  $('.topic_sidebar').stop().animate({top: $(this).scrollTop()});
+    // });
+    $('.scroll_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+    $('.scroll_bottom').click(function(){$('html,body').animate({scrollTop: $('footer').offset().top}, 800);});
+  })
+</script>

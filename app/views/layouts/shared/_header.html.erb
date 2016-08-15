@@ -5,14 +5,7 @@
         <h3><%= link_to '首页', root_path %></h3>
       </dd>
       <dd>
-        <h3><%= link_to root_path do %>
-            热门主题<i></i>
-          <% end %></h3>
-        <ul>
-          <li><a href="http://sc.chinaz.com/">Ruby</a></li>
-          <li><a href="http://sc.chinaz.com/">Rails</a></li>
-          <li><a href="http://sc.chinaz.com/">DHH</a></li>
-        </ul>
+        <h3><%= link_to '帖子', topics_path %></h3>
       </dd>
       <dd>
         <h3>
@@ -30,39 +23,52 @@
       </dd>
     </dl>
     <dl class="tnRight">
-      <dd>
-        <h3>
-          <%= link_to root_path do %>
-            消息<i></i>
-          <% end %>
-        </h3>
-        <ul>
-          <li><%= link_to '私信', root_path %></li>
-          <li><%= link_to '评论', root_path %></li>
-          <li><%= link_to '@我', root_path %></li>
-        </ul>
-      </dd>
-      <dd>
-        <h3><%= link_to root_path do %>
-            创建<i></i>
-          <% end %></h3>
-        <ul>
-          <li><%= link_to '创建笔记', root_path %></li>
-          <li><%= link_to '创建主题', root_path %></li>
-        </ul>
-      </dd>
-      <dd>
-        <h3><%= link_to root_path do %>
-            个人中心<i></i>
-          <% end %></h3>
-        <ul>
-          <li><%= link_to '账户设置', root_path %></li>
-          <li><%= link_to '我的笔记', users_notes_path %></li>
-          <li><%= link_to '我的主题', users_topics_path %></li>
-          <li><%= link_to '我的收藏', root_path %></li>
-          <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
-        </ul>
-      </dd>
+      <% if user_signed_in? %>
+        <dd>
+          <h3>
+            <%= link_to root_path do %>
+              通知<i></i>
+            <% end %>
+          </h3>
+          <ul>
+            <li><%= link_to '私信', root_path %></li>
+            <li><%= link_to '评论', root_path %></li>
+            <li><%= link_to '@我', root_path %></li>
+          </ul>
+        </dd>
+        <dd>
+          <h3><%= link_to root_path do %>
+              新建<i></i>
+            <% end %></h3>
+          <ul>
+            <li><%= link_to '创建笔记', new_note_path %></li>
+            <li><%= link_to '创建主题', new_topic_path %></li>
+          </ul>
+        </dd>
+        <dd>
+          <h3><%= link_to root_path do %>
+              个人中心<i></i>
+            <% end %></h3>
+          <ul>
+            <li><%= link_to '账户设置', root_path %></li>
+            <li><%= link_to '我的笔记', notes_path %></li>
+            <li><%= link_to '我的收藏', root_path %></li>
+            <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </dd>
+        <% if current_user.has_role? :admin %>
+          <dd>
+            <h3><%= link_to '成員管理', '#' %></h3>
+          </dd>
+        <% end %>
+      <% else %>
+        <dd>
+          <h3><%= link_to '登陸', new_user_session_path %></h3>
+        </dd>
+        <dd>
+          <h3><%= link_to '註冊', new_user_registration_path %></h3>
+        </dd>
+      <% end %>
     </dl>
   </div>
 </div>

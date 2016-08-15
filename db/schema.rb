@@ -76,15 +76,14 @@ ActiveRecord::Schema.define(version: 20160805015947) do
     t.integer  "node_id"
     t.string   "title"
     t.text     "body"
-    t.integer  "repelies_count", default: 0, null: false
-    t.integer  "replies_count",  default: 0, null: false
+    t.integer  "repelies_count", default: 0,     null: false
+    t.integer  "replies_count",  default: 0,     null: false
     t.integer  "likes_count",    default: 0
     t.integer  "follower_ids"
     t.integer  "liked_user_ids"
-    t.string   "who_deleted"
-    t.datetime "deleted_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "closed",         default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["node_id"], name: "index_topics_on_node_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
