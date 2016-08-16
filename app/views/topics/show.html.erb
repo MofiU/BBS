@@ -22,12 +22,16 @@
       <div class="panel-footer">
         <div class="opts">
           <% if user_signed_in? %>
-            <%= link_to '#' do %><i class="fa fa-heart-o"></i><span><%= @topic.likes_count %>个赞</span><% end %>
-            <%= link_to '#' do %><i class="fa fa-eye"></i><span>关注</span><% end %>
-            <%= link_to '#' do %><i class="fa fa-bookmark"></i><span>收藏</span><% end %>
+            <%= link_to 'javascript:void();' do %><i class="fa fa-heart-o"></i><span><%= @topic.likes_count %>个赞</span><% end %>
+            <%= link_to 'javascript:void();' do %><i class="fa fa-eye"></i><span>关注</span><% end %>
+            <%= topic_favorite_tag @topic %>
             <% if owner?(@topic) || admin? %>
+              <% if @topic.closed %>
+                <%= link_to '已关闭', 'javaScript:void(0);' %>
+              <% else %>
+                <%= link_to close_topic_path, method: :post do %><i class="fa fa-times"></i><span>关闭</span><% end %>
+              <% end %>
               <%= link_to edit_topic_path do %><i class="fa fa-pencil"></i><span>编辑</span><% end %>
-              <%= link_to close_topic_path, method: :post do %><i class="fa fa-times"></i><span>关闭</span><% end %>
               <% if can? :destroy, @topic %>
                 <%= link_to topic_path, method: :delete do %><i class="fa fa-trash-o"></i><span>删除</span><% end %>
               <% end %>

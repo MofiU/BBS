@@ -79,10 +79,13 @@
       span{
         margin-left: 5px;
       }
+      .active{
+        color: #E77341;
+      }
     }
     a:hover{
-        background-color: #F0F0F0;
-      }
+      background-color: #F0F0F0;
+    }
   }
 }
 

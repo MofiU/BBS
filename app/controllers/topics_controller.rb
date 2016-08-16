@@ -37,11 +37,30 @@ class TopicsController < ApplicationController
   end
 
   def close
+    @topic.update!(closed: true)
+    redirect_to topics_path
   end
 
   def destroy
     @topic.destroy
     redirect_to topics_path
+  end
+
+  def favorite
+    current_user.favorite_topic(params[:id])
+  end
+
+  def unfavorite
+    current_user.unfavorite_topic(params[:id])
+    render 'favorite'
+  end
+
+  def follow
+
+  end
+
+  def unfollow
+
   end
 
   private

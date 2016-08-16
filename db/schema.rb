@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20160805015947) do
     t.integer  "repelies_count", default: 0,     null: false
     t.integer  "replies_count",  default: 0,     null: false
     t.integer  "likes_count",    default: 0
-    t.integer  "follower_ids"
-    t.integer  "liked_user_ids"
+    t.string   "follower_ids",   default: ""
+    t.string   "liked_user_ids", default: ""
     t.boolean  "closed",         default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -97,10 +97,10 @@ ActiveRecord::Schema.define(version: 20160805015947) do
     t.text     "bio"
     t.integer  "topics_count",           default: 0,  null: false
     t.integer  "replies_count",          default: 0,  null: false
-    t.integer  "favorite_topic_ids"
-    t.integer  "blocked_user_ids"
-    t.integer  "following_ids"
-    t.integer  "follower_ids"
+    t.string   "favorite_topic_ids",     default: ""
+    t.string   "blocked_user_ids",       default: ""
+    t.string   "following_ids",          default: ""
+    t.string   "follower_ids",           default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
