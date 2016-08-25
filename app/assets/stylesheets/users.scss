@@ -1,3 +1,36 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+.user{
+  .media-object {
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  .number,.counts,.mail i{
+    color: #999999;
+    margin-top: 10px;
+  }
+  .mail i:hover{
+    color: black;
+  }
+  .follow-info {
+    border-top: 1px solid #f0f0f0;
+    text-align: center; margin-top: 15px; padding-top: 15px;
+    a { display:block; text-decoration: none; }
+    a.counter {
+      font-size: 32px; color: blue;
+      &:hover { color: blue; }
+    }
+    a.text {
+      color: #999;
+    }
+  }
+}
+.node-topics{
+  margin-bottom: 0px !important;
+  border-bottom: 1px solid #dddddd;
+  font-weight: bold;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805015947) do
+ActiveRecord::Schema.define(version: 20160818041822) do
 
   create_table "nodes", force: :cascade do |t|
     t.string   "category",   null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160805015947) do
     t.datetime "deleted_at"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["title"], name: "index_notes_on_title", unique: true
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -111,6 +112,10 @@ ActiveRecord::Schema.define(version: 20160805015947) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

@@ -1,22 +1,23 @@
-<div class="row">
-  <div class="col-sm-9">
-    <div id="topics"  class="panel panel-default">
-      <div class="panel-heading">Topics</div>
-      <div class="panel-body">
-        <% if @topics.present? %>
-          <% @topics.each do |topic| %>
-            <div class="media">
-              <div class="media-body">
-                <div class="media-heading"><h5><b><%= link_to topic.title, users_topic_path(topic) %></b></h5></div>
-                <div class="media-body info"><%= topic.created_at %></div>
-                <div class="media-right"><%= link_to edit_users_topic_path(topic) do %><i class="glyphicon glyphicon-pencil"></i> <% end %></div>
-              </div>
-            </div>
-          <% end %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if @topics.present? %>
+      <table class="table node-topics">
+        <tbody>
+        <% @topics.each do |topic| %>
+          <tr>
+            <td><%= link_to topic.title, topic_path(topic) %></td>
+            <td>Created_at: <%= format_time topic.created_at %></td>
+          </tr>
         <% end %>
-      </div>
-      <div class="panel-footer"></div>
-    </div>
+        </tbody>
+      </table>
+    <% end %>
   </div>
-  <%= render "sidebar" %>
+  <div class="panel-footer"></div>
 </div>
+
+<script>
+$(function () {
+  $(".user_topics").addClass('active');
+})
+</script>

@@ -1,10 +1,9 @@
 class User < ApplicationRecord
-
-  after_create_commit :empower
+  attr_accessor :current_password
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: 'missing.png'
   has_many :notes
   has_many :topics
-
-
+  after_create_commit :empower
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,6 +18,8 @@ class User < ApplicationRecord
     :length => { in: 4..20 }
   # Only allow letter, number, underscore and punctuation.
   validate :validate_username
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/, message: "格式不正确"
+
   def validate_username
     if User.where(email: username).exists?
       errors.add(:username, :invalid)

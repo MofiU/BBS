@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bbs</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/shared/header' %>
+    <div class="main">
+      <%= notice_message %>
+      <div class="row">
+        <div class="col-md-4 user">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="media">
+                <div class="avatar media-left">
+                  <img class="media-object avatar-96" src="https://ruby-china.org/system/letter_avatars/2/B/242_96_145/192.png">
+                  <div><span class="label label-info role"><%= (@user.has_role? :admin) ? '管理员' : '会员'  %></span></div>
+                </div>
+                <div class="media-body">
+                  <div class="username">
+                    <b><%= @user.username  %></b>
+                  </div>
+                  <div class="number">
+                    第 <%= @user.id %> 位用户 / <span title="注册日期"><%= format_time @user.created_at %></span>
+                  </div>
+                  <div class="counts">
+                    <span><%= @user.topics_count %></span> 篇帖子 • <span><%= @user.replies_count %></span> 条回帖
+                  </div>
+                  <div class="mail">
+                    <%= mail_to @user.email do %>
+                      <i class="fa fa-envelope-o fa-lg"></i>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="follow-info row">
+                <div class="col-xs-4 followers item">
+                  <a class="counter" href="/bobo/followers">0</a>
+                  <a class="text" href="/bobo/followers">关注者</a>
+                </div>
+                <div class="col-xs-4 following item">
+                  <a class="counter" href="/bobo/following">0</a>
+                  <a class="text" href="/bobo/following">正在关注</a>
+                </div>
+                <div class="col-xs-4 stars item">
+                  <a class="counter" href="/bobo/favorites">0</a>
+                  <a class="text" href="/bobo/favorites">收藏</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              未设置 GitHub 信息.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <ul class="nav nav-tabs">
+            <li class="userinfo"><%= link_to '个人信息', user_path(@user) %></li>
+            <li class="user_topics"><%= link_to '帖子', users_topics_path(@user)  %></li>
+            <li class="user_replies"><%= link_to '回帖', users_replies_path(@user) %></li>
+            <li class="user_favorites"><%= link_to '收藏', users_favorites_path(@user) %></li>
+            <li class="user_notes"><%= link_to '记事本', users_notes_path(@user) %></li>
+            <li class="user_following"><%= link_to '正在关注', users_following_path(@user) %></li>
+            <li class="user_followers"><%= link_to '关注者', users_followers_path(@user) %></li>
+          </ul>
+          <div><%= yield %></div>
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/shared/footer' %>
+  </body>
+</html>

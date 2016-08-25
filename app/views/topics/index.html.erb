@@ -4,10 +4,12 @@
       <div class="panel-heading">Topics</div>
       <div class="panel-body">
         <% if @topics.present? %>
-          <% @topics.each do |topic| %>
+          <% @topics.includes(:user).each do |topic| %>
             <div class="media topic">
               <div class="avatar media-right">
-                <a href="#"><img class="media-object" src="https://ruby-china-files.b0.upaiyun.com/user/avatar/1638.jpg!md" alt="1638"></a>
+                <%= link_to user_path(topic.user.id) do %>
+                  <%= image_tag topic.user.photo.url(:thumb), class: 'avatar' %>
+                <% end %>
               </div>
               <div class="media-body" style="padding-left: 20px">
                 <div class="media-heading"><h5><b><%= link_to topic.title, topic_path(topic) %></b></h5></div>

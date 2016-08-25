@@ -8,6 +8,9 @@ module TopicsHelper
     else
       link_to(raw("#{bookmark_o_icon} 收藏"), favorite_topic_path(topic), class: "favorite", remote: true, method: :post)
     end
+  end
 
+  def topic_head(topic)
+    "由#{topic.user.username}于#{topic.updated_at}创建"
   end
 end

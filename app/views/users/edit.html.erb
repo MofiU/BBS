@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>用户档案</h2></div>
+  <div class="panel-body">
+    <%= simple_form_for(@user) do |f| %>
+      <%= f.input :username, disabled: true %>
+      <%= f.input :email, disabled: true %>
+       <%= f.input :photo, as: :file %>
+      <%= f.button :submit,  "更改用户" %>
+    <% end %>
+  </div>
+</div>

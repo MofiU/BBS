@@ -21,6 +21,10 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def format_time(utc_time)
+    utc_time.strftime('%Y-%m-%d')
+  end
+
   def owner?(item)
     return false if item.blank? || current_user.blank?
     if item.is_a?(User)

@@ -1,22 +1,23 @@
-<div class="row">
-  <div class="col-sm-9">
-    <div id="notes"  class="panel panel-default">
-      <div class="panel-heading">Notes</div>
-      <div class="panel-body">
-        <% if @notes.present? %>
-          <% @notes.each do |note| %>
-            <div class="media node">
-              <div class="media-body">
-                <div class="media-heading"><h5><b><%= link_to note.title, users_note_path(note) %></b></h5></div>
-                <div class="media-body info"><%= note.created_at %></div>
-                <div class="media-right"><%= link_to edit_users_note_path(note) do %><i class="glyphicon glyphicon-pencil"></i> <% end %></div>
-              </div>
-            </div>
-          <% end %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if @notes.present? %>
+      <table class="table node-topics">
+        <tbody>
+        <% @notes.each do |note| %>
+          <tr>
+            <td><%= link_to note.title, note_path(note) %></td>
+            <td>Created_at: <%= format_time note.created_at %></td>
+          </tr>
         <% end %>
-      </div>
-      <div class="panel-footer"></div>
-    </div>
+        </tbody>
+      </table>
+    <% end %>
   </div>
-  <%= render "sidebar" %>
+  <div class="panel-footer"></div>
 </div>
+
+<script>
+$(function () {
+  $(".user_notes").addClass('active')
+})
+</script>

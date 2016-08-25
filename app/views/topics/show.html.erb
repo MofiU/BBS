@@ -5,7 +5,7 @@
         <div class="media-body">
           <h1 class="media-heading"><%= @topic.title %></h1>
           <div class="info">
-            <%= "由#{@topic.user.username}于#{@topic.updated_at}创建" %>
+            <%= topic_head(@topic) %>
           </div>
         </div>
         <div class="avatar media-right">

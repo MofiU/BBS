@@ -49,6 +49,13 @@ img {
   border:0;
 }
 
+.avatar { text-align:center; }
+.avatar img{
+  width: 48px;
+  height: 48px;
+  border-radius:50%;
+}
+
 a {
   text-decoration: none !important;
   color:#333;

@@ -30,29 +30,22 @@ Rails.application.routes.draw do
   end
 
   resources :notes
+  resources :users
 
   namespace :users do
-    resources :topics
-    resources :replies
-    resources :notes
-    resources :photos
-  end
-
-
-  constraints(id: /[\w\-\.]*/) do
-    resources :users, path: '', as: 'users' do
-      member do
-        # User only
-        get :topics
-        get :replies
-        get :favorites
-        get :notes
-        post :follow
-        post :unfollow
-        get :followers
-      end
+    scope ':id' do
+      resources :topics
+      resources :replies
+      resources :notes
+      resources :photos
+      get 'favorites'
+      get 'followers'
+      get 'following'
     end
   end
+
+
+
 
 
   match '*path', via: :all, to: 'home#error_404'

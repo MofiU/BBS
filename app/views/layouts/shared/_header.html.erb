@@ -9,7 +9,7 @@
       </dd>
       <dd>
         <h3>
-          <%= link_to root_path do %>
+          <%= link_to 'javascript:void(0)' do %>
             热门评论<i></i>
           <% end %></h3>
         <ul>
@@ -26,7 +26,7 @@
       <% if user_signed_in? %>
         <dd>
           <h3>
-            <%= link_to root_path do %>
+            <%= link_to 'javascript:void(0)' do %>
               通知<i></i>
             <% end %>
           </h3>
@@ -37,7 +37,7 @@
           </ul>
         </dd>
         <dd>
-          <h3><%= link_to root_path do %>
+          <h3><%= link_to 'javascript:void(0)' do %>
               新建<i></i>
             <% end %></h3>
           <ul>
@@ -46,11 +46,12 @@
           </ul>
         </dd>
         <dd>
-          <h3><%= link_to root_path do %>
+          <h3><%= link_to 'javascript:void(0)' do %>
               个人中心<i></i>
             <% end %></h3>
           <ul>
-            <li><%= link_to '账户设置', root_path %></li>
+            <li><%= link_to current_user.username, user_path(current_user) %></li>
+            <li><%= link_to '账户设置', edit_user_path(current_user) %></li>
             <li><%= link_to '我的笔记', notes_path %></li>
             <li><%= link_to '我的收藏', root_path %></li>
             <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
