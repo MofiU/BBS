@@ -37,8 +37,12 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-table'
+  gem 'rails-assets-d3','3.5.17'
+  gem 'rails-assets-cal-heatmap'
 end
 
+## 验证码，头像
+gem 'letter_avatar'
 
 
 #role and premisssion

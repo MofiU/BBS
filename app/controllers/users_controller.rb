@@ -26,6 +26,12 @@ class UsersController < ApplicationController
   def followers
 
   end
+  ##可以放到module里面去，通过include变为实例方法
+  def calendar
+    timestamps = @user.calendar_data
+    render json: timestamps
+    # render json: {Time.now.to_i => 10, 10.months.ago.to_i => 20}
+  end
 
   def update
     @user = current_user

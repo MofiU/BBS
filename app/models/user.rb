@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   attr_accessor :current_password
-  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: 'missing.png'
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }
   has_many :notes
   has_many :topics
+  has_many :replies
   after_create_commit :empower
   rolify
   # Include default devise modules. Others available are:
@@ -62,6 +63,20 @@ class User < ApplicationRecord
 
   def favorite_topic_ids_array
     favorite_topic_ids.split(',')
+  end
+
+  def calendar_data
+    user = self
+    date_from = 12.months.ago.beginning_of_month.to_date
+    replies = user.replies.where('created_at > ?', date_from)
+                  .group("date(created_at)")
+                  .select("date(created_at) AS date, count(id) AS total_amount").all
+
+    timestamps = {}
+    replies.each do |reply|
+      timestamps[reply['date'].to_time.to_i.to_s] = reply['total_amount']
+    end
+    timestamps
   end
 
   private

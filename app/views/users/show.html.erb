@@ -2,9 +2,39 @@
 <%#= image_tag @user.photo.url(:medium) %>
 <%#= image_tag @user.photo.url(:thumb) %>
 
-
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div id="cal-heatmap">
+    <%
+    start_date = 12.months.ago.beginning_of_month
+    %>
+    </div>
+  </div>
+</div>
 <script>
 $(function () {
-  $(".userinfo").addClass('active')
+  $(".userinfo").addClass('active');
+
+  var cal = new CalHeatMap();
+  cal.init({
+    itemSelector: "#cal-heatmap",
+    animationDuration: 200,
+    domain: "month",
+    subDomain: 'day',
+    rowLimit: 7,
+    domainGutter: 0,
+    data: '<%= users_calendar_path(@user, format: 'json') %>',
+    start: new Date(<%= start_date.year %>, <%= start_date.month %>, <%= start_date.day %>),
+    legendHorizontalPosition: 'right',
+    // subDomainTextFormat: "%d",
+    domainLabelFormat: "%b",
+    legend: [1, 5, 10, 15],
+    itemName: ['event', 'events'],
+    // highlight: 'now',
+    label: {
+      position: 'top'
+    },
+    displayLegend: true
+  });
 })
 </script>

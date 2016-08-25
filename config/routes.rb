@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get 'favorites'
       get 'followers'
       get 'following'
+      get 'calendar'
     end
   end
 

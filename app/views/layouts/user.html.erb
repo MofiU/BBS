@@ -18,7 +18,11 @@
             <div class="panel-body">
               <div class="media">
                 <div class="avatar media-left">
-                  <img class="media-object avatar-96" src="https://ruby-china.org/system/letter_avatars/2/B/242_96_145/192.png">
+                  <% if @user.photo.present? %>
+                    <%= image_tag @user.photo.url(:medium) %>
+                  <% else %>
+                    <img src="<%= letter_avatar_url(@user.username, 96) %>" alt="<%= @user.username %>" class='media-object'>
+                  <% end %>
                   <div><span class="label label-info role"><%= (@user.has_role? :admin) ? '管理员' : '会员'  %></span></div>
                 </div>
                 <div class="media-body">

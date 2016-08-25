@@ -15,4 +15,6 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require bootstrap-table
+//= require d3
+//= require cal-heatmap
 //= require_tree .
