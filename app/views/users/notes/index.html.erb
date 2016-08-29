@@ -1,17 +1,17 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <% if @notes.present? %>
-      <table class="table node-topics">
-        <tbody>
-        <% @notes.each do |note| %>
-          <tr>
-            <td><%= link_to note.title, note_path(note) %></td>
-            <td>Created_at: <%= format_time note.created_at %></td>
-          </tr>
+    <table class="table node-topics">
+      <tbody>
+        <% if @notes.present? %>
+          <% @notes.each do |note| %>
+            <tr>
+              <td><%= link_to note.title, note_path(note) %></td>
+              <td>Created_at: <%= format_time note.created_at %></td>
+            </tr>
+          <% end %>
         <% end %>
-        </tbody>
-      </table>
-    <% end %>
+      </tbody>
+    </table>
   </div>
   <div class="panel-footer"></div>
 </div>

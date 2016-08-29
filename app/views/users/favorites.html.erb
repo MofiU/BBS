@@ -1,3 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table">
+      <tbody>
+      <% if @topics.present? %>
+        <% @topics.each do |topic| %>
+          <tr>
+            <td><%= link_to topic.node.present? ? topic.node.name : '节点暂时不存在', 'javascript:void(0);' %></td>
+            <td><%= link_to topic.title, topic_path(topic) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer"></div>
+</div>
+
 <script>
 $(function () {
   $(".user_favorites").addClass('active')

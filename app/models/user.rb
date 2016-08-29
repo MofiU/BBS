@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include UserAction
   attr_accessor :current_password
   has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }
   has_many :notes
@@ -33,51 +34,7 @@ class User < ApplicationRecord
   end
 
 
-  # 收藏话题
-  def favorite_topic(topic_id)
-    return false if topic_id.blank?
-    return false if favorited_topic?(topic_id)
-    self.favorite_topic_ids = "#{favorite_topic_ids},#{topic_id}"
-    self.save!
-    true
-  end
 
-  # 取消对话题的收藏
-  def unfavorite_topic(topic_id)
-    return false if topic_id.blank?
-    array = favorite_topic_ids_array
-    array.delete(topic_id)
-    self.favorite_topic_ids = array.join(',')
-    save
-    true
-  end
-
-  # 是否收藏过话题
-  def favorited_topic?(topic_id)
-    favorite_topic_ids_array.include?(topic_id)
-  end
-
-  def favorite_topics_count
-    favorite_topic_ids.size
-  end
-
-  def favorite_topic_ids_array
-    favorite_topic_ids.split(',')
-  end
-
-  def calendar_data
-    user = self
-    date_from = 12.months.ago.beginning_of_month.to_date
-    replies = user.replies.where('created_at > ?', date_from)
-                  .group("date(created_at)")
-                  .select("date(created_at) AS date, count(id) AS total_amount").all
-
-    timestamps = {}
-    replies.each do |reply|
-      timestamps[reply['date'].to_time.to_i.to_s] = reply['total_amount']
-    end
-    timestamps
-  end
 
   private
 

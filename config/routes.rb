@@ -42,6 +42,10 @@ Rails.application.routes.draw do
       get 'followers'
       get 'following'
       get 'calendar'
+      post 'follow'
+      post 'unfollow'
+      post 'block'
+      post 'unblock'
     end
   end
 

@@ -1,17 +1,17 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <% if @topics.present? %>
-      <table class="table node-topics">
-        <tbody>
-        <% @topics.each do |topic| %>
-          <tr>
-            <td><%= link_to topic.title, topic_path(topic) %></td>
-            <td>Created_at: <%= format_time topic.created_at %></td>
-          </tr>
+    <table class="table node-topics">
+      <tbody>
+        <% if @topics.present? %>
+          <% @topics.each do |topic| %>
+            <tr>
+              <td><%= link_to topic.title, topic_path(topic) %></td>
+              <td>Created_at: <%= format_time topic.created_at %></td>
+            </tr>
+          <% end %>
         <% end %>
-        </tbody>
-      </table>
-    <% end %>
+      </tbody>
+    </table>
   </div>
   <div class="panel-footer"></div>
 </div>

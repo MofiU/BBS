@@ -26,7 +26,7 @@ class Users::TopicsController < Users::ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.includes(:topics).find(params[:id])
   end
 
 end

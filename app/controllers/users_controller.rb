@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout 'user'
+  layout 'user', except: :edit
 
   before_action :set_user
 
@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-
   end
 
   def show
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def favorites
-
+    @topics = @user.favorited_topics.includes(:node)
   end
 
   def following
@@ -42,6 +41,26 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def follow
+    current_user.follow(params[:id])
+    @user.reload
+  end
+
+  def unfollow
+    current_user.unfollow(params[:id])
+    @user.reload
+    render 'follow'
+  end
+
+  def block
+    current_user.block(params[:id])
+  end
+
+  def unblock
+    current_user.unblock(params[:id])
+  end
+
   private
 
   def user_params
@@ -51,5 +70,4 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
 end

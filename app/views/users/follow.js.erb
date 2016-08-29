@@ -1,0 +1,8 @@
+$(".followers").html('<%= @user.follow_count %>')
+<% if current_user.has_follow? @user %>
+  $(".follow-user .follow a").html("<i class='fa fa-user'>取消关注")
+  $(".follow-user .follow a").attr('href', "<%= users_unfollow_path(@user) %>")
+<% else %>
+  $(".follow-user .follow a").html("<i class='fa fa-user'></i>关注")
+  $(".follow-user .follow a").attr('href', "<%= users_follow_path(@user) %>")
+<% end %>

@@ -18,11 +18,7 @@
             <div class="panel-body">
               <div class="media">
                 <div class="avatar media-left">
-                  <% if @user.photo.present? %>
-                    <%= image_tag @user.photo.url(:medium) %>
-                  <% else %>
-                    <img src="<%= letter_avatar_url(@user.username, 96) %>" alt="<%= @user.username %>" class='media-object'>
-                  <% end %>
+                  <%= user_photo @user, 'media-object'%>
                   <div><span class="label label-info role"><%= (@user.has_role? :admin) ? '管理员' : '会员'  %></span></div>
                 </div>
                 <div class="media-body">
@@ -43,21 +39,41 @@
                 </div>
               </div>
               <div class="follow-info row">
-                <div class="col-xs-4 followers item">
-                  <a class="counter" href="/bobo/followers">0</a>
-                  <a class="text" href="/bobo/followers">关注者</a>
+
+                <div class="col-xs-4">
+                  <%= link_to @user.follow_count, users_followers_path(@user), class: 'counter followers' %>
+                  <%= link_to '关注者', users_followers_path, class: 'text' %>
                 </div>
-                <div class="col-xs-4 following item">
-                  <a class="counter" href="/bobo/following">0</a>
-                  <a class="text" href="/bobo/following">正在关注</a>
+
+                <div class="col-xs-4">
+                  <%= link_to @user.following_count, users_following_path(@user), class: 'counter following' %>
+                  <%= link_to '正在关注', users_following_path(@user), class: 'text' %>
                 </div>
-                <div class="col-xs-4 stars item">
-                  <a class="counter" href="/bobo/favorites">0</a>
-                  <a class="text" href="/bobo/favorites">收藏</a>
+
+                <div class="col-xs-4">
+                  <%= link_to @user.favorite_topics_count, users_favorites_path(@user), class: 'counter favoirtes' %>
+                  <%= link_to '收藏', users_favorites_path(@user), class: 'text' %>
                 </div>
+
               </div>
 
             </div>
+
+            <% if @user != current_user %>
+              <div class="follow-user row">
+                <div class="col-xs-6 follow">
+                  <% if current_user.has_follow? @user %>
+                    <%= link_to users_unfollow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>取消关注 <% end %>
+                  <% else %>
+                    <%= link_to users_follow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>关注<% end %>
+                  <% end %>
+                </div>
+                <div class="col-xs-6 block">
+                  <%= link_to users_block_path(@user), class: "btn btn-block btn-default", method: :post, remote: true do %> <i class="fa fa-eye-slash"></i>屏蔽 <% end %>
+                </div>
+              </div>
+            <% end %>
+
           </div>
           <div class="panel panel-default">
             <div class="panel-body">

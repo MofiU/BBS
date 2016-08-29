@@ -8,7 +8,7 @@
             <div class="media topic">
               <div class="avatar media-right">
                 <%= link_to user_path(topic.user.id) do %>
-                  <%= image_tag topic.user.photo.url(:thumb), class: 'avatar' %>
+                  <%= user_photo topic.user,  'avatar' %>
                 <% end %>
               </div>
               <div class="media-body" style="padding-left: 20px">
