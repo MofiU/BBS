@@ -18,3 +18,23 @@
 //= require d3
 //= require cal-heatmap
 //= require_tree .
+
+
+
+
+
+
+
+function autosize(textarea) {
+    $(textarea).height(100); // temporarily shrink textarea so that scrollHeight returns content height when content does not fill textarea
+    $(textarea).height($(textarea).prop("scrollHeight"));
+}
+
+$(document).ready(function () {
+    $(document).on("input", "textarea", function() {
+      autosize(this);
+    });
+    $("textarea").each(function () {
+      autosize(this);
+    });
+});

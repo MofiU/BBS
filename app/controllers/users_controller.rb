@@ -19,17 +19,16 @@ class UsersController < ApplicationController
   end
 
   def following
-
+    @users = User.where(id: @user.following_ids_array)
   end
 
   def followers
-
+    @users = User.where(id: @user.follow_ids_array)
   end
   ##可以放到module里面去，通过include变为实例方法
   def calendar
     timestamps = @user.calendar_data
     render json: timestamps
-    # render json: {Time.now.to_i => 10, 10.months.ago.to_i => 20}
   end
 
   def update

@@ -63,9 +63,12 @@
               <div class="follow-user row">
                 <div class="col-xs-6 follow">
                   <% if current_user.has_follow? @user %>
-                    <%= link_to users_unfollow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>取消关注 <% end %>
+                    <%= link_to users_unfollow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>取消关注
+                    <% end %>
+
                   <% else %>
                     <%= link_to users_follow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>关注<% end %>
+
                   <% end %>
                 </div>
                 <div class="col-xs-6 block">

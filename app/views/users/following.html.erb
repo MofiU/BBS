@@ -1,5 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if @users.present? %>
+      <% @users.each do |user| %>
+        <div class="media user-card">
+          <div class="media-left"><%= link_to user_photo(user, ''), user %></div>
+          <div class="media-body">
+            <div class="media-heading"><%= link_to user.username, user %></div>
+            <div class="">
+<!--
+              <% if user != current_user %>
+                <% if current_user.has_follow? user %>
+                  <%= link_to users_unfollow_path(user), method: :post, remote: true do %> <i class="fa fa-user"></i>取消关注 <% end %>
+                <% else %>
+                  <%= link_to users_follow_path(user), method: :post, remote: true do %> <i class="fa fa-user"></i>关注<% end %>
+                <% end %>
+              <% end %>
+-->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 <script>
 $(function () {
   $(".user_following").addClass('active')
+  $('.infos')
 })
 </script>

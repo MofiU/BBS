@@ -4,7 +4,7 @@
     <li role="presentation" class="preview"><a href="#">Preview</a></li>
   </ul>
   <%= f.input :title, label: false, placeholder: 'title' %>
-  <%= f.input :body, label: false, as: :text, :input_html => { :cols => 5, :rows => 20 } %>
+  <%= f.input :body, label: false %>
   <div class="row">
     <div class="col-sm-3">
       <%= f.button :submit, class: 'btn btn-primary btn-block' %>

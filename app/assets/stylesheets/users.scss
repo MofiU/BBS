@@ -39,3 +39,13 @@
   border-bottom: 1px solid #dddddd;
   font-weight: bold;
 }
+.user-card{
+  img{
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+  }
+  a{
+    font-weight: bold;
+  }
+}

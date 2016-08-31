@@ -116,9 +116,6 @@ module UserAction
   end
 
   def follow_user?(user_id)
-    p '=================='
-    p following_ids_array
-    p user_id.to_s
     following_ids_array.include? user_id.to_s
   end
 

@@ -9,7 +9,9 @@
           </div>
         </div>
         <div class="avatar media-right">
-          <a href="#"><%= user_photo(@topic.user, 'media-object') %></a>
+          <%=  link_to user_path(@topic.user) do %>
+            <%= user_photo(@topic.user, 'media-object') %>
+          <% end %>
         </div>
       </div>
       <div class="panel-body">
@@ -42,7 +44,37 @@
         </div>
       </div>
     </div>
+
+    <% if @replies.blank? %>
+        <div class="no-result">
+          No Reply at the moment.
+        </div>
+        <% else %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            共收到 <b><%= @topic.replies_count %></b> 条回复
+          </div>
+          <div class="panel-body replies">
+            <%= render partial: "/replies/reply", collection: @replies %>
+          </div>
+        </div>
+      <% end %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">回帖</div>
+      <div class="panel-body">
+        <%= simple_form_for @reply do |f| %>
+          <%= f.input :body, label: false %>
+          <%= f.input :topic_id, as: :hidden, :input_html => { :value => @topic.id }  %>
+          <%= f.button :submit, label: 'Reply', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+
+    </div>
+
+
   </div>
+
   <div class="col-sm-3">
     <%= render 'sidebar' %>
   </div>

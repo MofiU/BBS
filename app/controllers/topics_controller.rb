@@ -12,6 +12,8 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @reply = Reply.new
+    @replies = @topic.replies
   end
 
   def new
@@ -21,6 +23,8 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(title: topic_params[:title], body: topic_params[:body], user_id: current_user.id)
     if @topic.save
+      current_user.topics_count += 1
+      current_user.save!
       redirect_to topic_path(@topic)
     else
       render 'new'
@@ -45,6 +49,8 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
+    current_user.topics_count -= 1
+    current_user.save!
     redirect_to topics_path
   end
 

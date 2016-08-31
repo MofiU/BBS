@@ -3,6 +3,7 @@ class Topic < ApplicationRecord
   validates :body, :presence => true
   belongs_to :user
   belongs_to :node
+  has_many :replies
   scope :recently, ->{order(created_at: :desc).limit(10)}
   scope :cream, ->{where(cream: true, deleted: nil)}
   scope :active, ->{where(deleted_at: nil)}

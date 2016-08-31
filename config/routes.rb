@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :notes
   resources :users
+  resources :replies
 
   namespace :users do
     scope ':id' do
