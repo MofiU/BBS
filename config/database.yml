@@ -1,13 +1,17 @@
 development:
   adapter: postgresql
-  database: bbs_development
+  database: daiqpvung3athq
+  host: ec2-23-21-219-12.compute-1.amazonaws.com
+  port: 5432
   username: postgres
   password: Cc123456
   pool: 5
   timeout: 5000
 test:
   adapter: postgresql
-  database: bbs_test
+  database: daiqpvung3athq
+  host: zengbo01.rnd.laxino.com
+  port: 5432
   username: postgres
   password: Cc123456
   pool: 5
@@ -15,7 +19,9 @@ test:
 
 production:
   adapter: postgresql
-  database: bbs_production
+  database: daiqpvung3athq
+  host: zengbo01.rnd.laxino.com
+  port: 5432
   username: postgres
   password: Cc123456
   pool: 5
