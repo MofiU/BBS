@@ -3,8 +3,8 @@ development:
   database: daiqpvung3athq
   host: ec2-23-21-219-12.compute-1.amazonaws.com
   port: 5432
-  username: postgres
-  password: Cc123456
+  username: qgxjasgwqecorx
+  password: xeLdZXjqbMc6CrTEAXDyGG4UlO
   pool: 5
   timeout: 5000
 test:
@@ -13,7 +13,7 @@ test:
   host: zengbo01.rnd.laxino.com
   port: 5432
   username: postgres
-  password: Cc123456
+  password: xeLdZXjqbMc6CrTEAXDyGG4UlO
   pool: 5
   timeout: 5000
 
@@ -23,6 +23,6 @@ production:
   host: zengbo01.rnd.laxino.com
   port: 5432
   username: postgres
-  password: Cc123456
+  password: xeLdZXjqbMc6CrTEAXDyGG4UlO
   pool: 5
   timeout: 5000
