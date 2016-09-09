@@ -54,7 +54,7 @@ Rails.application.configure do
 
   config.action_cable.disable_request_forgery_protection = true
 
-  config.action_mailer.default_url_options = { host: 'http://zengbo01.rnd.laxino.com', port: 10000 }
+  config.action_mailer.default_url_options = { host: 'https://bbsdemo.herokuapp.com' }
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
