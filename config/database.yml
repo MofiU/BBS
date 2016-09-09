@@ -12,7 +12,7 @@ test:
   database: daiqpvung3athq
   host: zengbo01.rnd.laxino.com
   port: 5432
-  username: postgres
+  username: qgxjasgwqecorx
   password: xeLdZXjqbMc6CrTEAXDyGG4UlO
   pool: 5
   timeout: 5000
@@ -22,7 +22,7 @@ production:
   database: daiqpvung3athq
   host: zengbo01.rnd.laxino.com
   port: 5432
-  username: postgres
+  username: qgxjasgwqecorx
   password: xeLdZXjqbMc6CrTEAXDyGG4UlO
   pool: 5
   timeout: 5000
