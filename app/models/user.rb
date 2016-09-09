@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   include UserAction
   attr_accessor :current_password
+  serialize :favorite_topic_ids , Array
+  serialize :blocked_user_ids , Array
+  serialize :follower_ids , Array
+  serialize :following_ids , Array
   has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }
   has_many :notes
   has_many :topics
@@ -9,7 +13,7 @@ class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :username,
     :presence => true,
@@ -32,9 +36,6 @@ class User < ApplicationRecord
     conditions = warden_conditions.dup
     find_by(username: conditions[:email]) || find_by(email: conditions[:email])
   end
-
-
-
 
   private
 

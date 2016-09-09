@@ -24,8 +24,8 @@
       <div class="panel-footer">
         <div class="opts">
           <% if user_signed_in? %>
-            <%= link_to 'javascript:void();' do %><i class="fa fa-heart-o"></i><span><%= @topic.likes_count %>个赞</span><% end %>
-            <%= link_to 'javascript:void();' do %><i class="fa fa-eye"></i><span>关注</span><% end %>
+            <%= like_topic_tag @topic %>
+            <%= follow_topic_tag @topic %>
             <%= topic_favorite_tag @topic %>
             <% if owner?(@topic) || admin? %>
               <% if @topic.closed %>
@@ -79,3 +79,19 @@
     <%= render 'sidebar' %>
   </div>
 </div>
+
+
+<script>
+$(document).ready(function () {
+  function autosize(textarea) {
+    $(textarea).height(100); // temporarily shrink textarea so that scrollHeight returns content height when content does not fill textarea
+    $(textarea).height($(textarea).prop("scrollHeight"));
+  }
+  $(document).on("input", "textarea", function() {
+    autosize(this);
+  });
+  $("textarea").each(function () {
+    autosize(this);
+  });
+});
+</script>

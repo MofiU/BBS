@@ -27,7 +27,7 @@ class NotesController < ApplicationController
 
   def update
     if @note.update(note_params)
-      redirect_to note_url(@note)
+      redirect_to note_url(@note), notice: '笔记更新成功'
     else
       render 'edit'
     end
@@ -37,8 +37,11 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.destroy
-    redirect_to notes_path
+    if @note.destroy
+      redirect_to notes_path, notice: '删除笔记成功'
+    else
+      redirect_to notes_path, alert: '程序异常，删除失败'
+    end
   end
 
   private

@@ -5,7 +5,7 @@ class Users::TopicsController < Users::ApplicationController
   before_action :set_user
 
   def index
-    @topics = @user.topics
+    @topics = @user.topics.page params[:page]
   end
 
   def show

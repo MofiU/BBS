@@ -4,6 +4,8 @@ class Topic < ApplicationRecord
   belongs_to :user
   belongs_to :node
   has_many :replies
+  serialize :liked_user_ids, Array
+  serialize :follower_ids, Array
   scope :recently, ->{order(created_at: :desc).limit(10)}
   scope :cream, ->{where(cream: true, deleted: nil)}
   scope :active, ->{where(deleted_at: nil)}

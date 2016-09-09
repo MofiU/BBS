@@ -5,7 +5,7 @@ class CreateReplies < ActiveRecord::Migration[5.0]
       t.belongs_to  :topic
       t.string      :title
       t.text        :body
-      t.integer     :liked_user_ids,     default: [],              array: true
+      t.string      :liked_user_ids
       t.integer     :likes_count,        default: 0
       t.timestamps
     end

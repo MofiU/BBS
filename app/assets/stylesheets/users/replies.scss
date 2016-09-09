@@ -6,10 +6,15 @@
   border: none;
 }
 .reply{
+  color: #333;
   border-bottom: 1px solid #f0f0f0;
   margin-top: 15px;
   min-height: 60px;
   .time{
-    color: #999999
+    font: italic bold 12px/20px ;
+    color: #999999;
+  }
+  .body{
+    margin-top: 15px;
   }
 }

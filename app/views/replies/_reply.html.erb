@@ -1,3 +1,8 @@
+<%
+  @current_floor = 0 if @current_floor.nil?
+  @current_floor += 1
+%>
+
 <div class="reply">
   <div class="media-left">
     <%=  link_to user_path(reply.user) do %>
@@ -10,14 +15,14 @@
         <b><%= link_to reply.user.username, user_path(reply.user) %></b>
       </span> ·
       <span class="time">
-        <a class="reply-floor" href="#reply1">#1</a> · <abbr class="timeago" title="2016-08-29T13:51:39+08:00"> one day ago</abbr>
+        #<%= @current_floor %> 回复于<%= time_ago_in_words(reply.created_at) %> 之前
       </span>
       <span class="pull-right">
           <span class="hideable">
           <!-- <a class="edit fa fa-pencil" data-uid="1" title="修改回帖" href="/topics/30925/replies/304274/edit"></a>
           <a data-floor="1" data-login="Rei" title="Reply to this floor" class="btn-reply fa fa-mail-reply" href="#"></a> -->
           </span>
-          <a title="赞" data-count="2" data-state="" data-type="Reply" data-id="304274" class="likeable " href="#"><i class="fa fa-heart-o"></i> <span>2 个赞</span></a>
+          <%= like_reply_tag reply %>
       </span>
     </div>
     <div class="markdown">

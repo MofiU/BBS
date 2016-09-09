@@ -41,17 +41,17 @@
               <div class="follow-info row">
 
                 <div class="col-xs-4">
-                  <%= link_to @user.follow_count, users_followers_path(@user), class: 'counter followers' %>
+                  <%= link_to @user.follower_ids.count, users_followers_path(@user), class: 'counter followers' %>
                   <%= link_to '关注者', users_followers_path, class: 'text' %>
                 </div>
 
                 <div class="col-xs-4">
-                  <%= link_to @user.following_count, users_following_path(@user), class: 'counter following' %>
+                  <%= link_to @user.following_ids.count, users_following_path(@user), class: 'counter following' %>
                   <%= link_to '正在关注', users_following_path(@user), class: 'text' %>
                 </div>
 
                 <div class="col-xs-4">
-                  <%= link_to @user.favorite_topics_count, users_favorites_path(@user), class: 'counter favoirtes' %>
+                  <%= link_to @user.favorite_topic_ids.count, users_favorites_path(@user), class: 'counter favoirtes' %>
                   <%= link_to '收藏', users_favorites_path(@user), class: 'text' %>
                 </div>
 
@@ -79,8 +79,13 @@
 
           </div>
           <div class="panel panel-default">
+            <div class="panel-heading">个人说明</div>
             <div class="panel-body">
-              未设置 GitHub 信息.
+              <% if @user.bio.present? %>
+                <%= simple_format @user.bio %>
+              <% else %>
+                这个用户很懒，什么也没说
+              <% end %>
             </div>
           </div>
         </div>

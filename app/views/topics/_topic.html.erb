@@ -1,0 +1,12 @@
+<div class="media topic">
+  <div class="avatar media-right">
+    <%= link_to user_path(topic.user.id) do %>
+      <%= user_photo topic.user,  'avatar' %>
+    <% end %>
+  </div>
+  <div class="media-body" style="padding-left: 20px">
+    <div class="media-heading"><h5><b><%= link_to topic.title, topic_path(topic) %></b></h5></div>
+    <div class="media-body info"><%= "由 #{topic.user.username} 于 #{format_time topic.created_at}" %></div>
+    <div class="media-right count"><%= link_to topic.replies_count, topic_path(topic) %> </div>
+  </div>
+</div>

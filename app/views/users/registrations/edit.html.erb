@@ -1,8 +1,23 @@
 <div class="panel panel-default">
+  <div class="panel-heading"><h2>用户档案</h2></div>
+  <div class="panel-body">
+    <%#= simple_form_for(@user) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, enctype:  "multipart/form-data" }) do |f| %>
+      <%= f.input :username, disabled: true %>
+      <%= f.input :email, disabled: true %>
+      <%= f.input :photo, as: :file %>
+      <%= f.input :bio, label: '个人说明' %>
+      <%= f.button :submit,  "更改用户" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default">
   <div class="panel-heading"><h2>修改密码</h2></div>
   <div class="panel-body">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%#= devise_error_messages! %>
+      <input type="hidden" name="by" value="pwd" />
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
@@ -15,5 +30,19 @@
 </div>
 
 
+<script>
+$(document).ready(function () {
+  function autosize(textarea) {
+    $(textarea).height(100); // temporarily shrink textarea so that scrollHeight returns content height when content does not fill textarea
+    $(textarea).height($(textarea).prop("scrollHeight"));
+  }
+  $(document).on("input", "textarea", function() {
+    autosize(this);
+  });
+  $("textarea").each(function () {
+    autosize(this);
+  });
+});
+</script>
 
 

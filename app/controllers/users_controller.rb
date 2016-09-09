@@ -15,15 +15,15 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @topics = @user.favorited_topics.includes(:node)
+    @topics = @user.favorited_topics.includes(:node).order(created_at: :desc).page params[:page]
   end
 
   def following
-    @users = User.where(id: @user.following_ids_array)
+    @users = User.where(id: @user.following_ids)
   end
 
   def followers
-    @users = User.where(id: @user.follow_ids_array)
+    @users = User.where(id: @user.follower_ids)
   end
   ##可以放到module里面去，通过include变为实例方法
   def calendar

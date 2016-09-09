@@ -8,8 +8,8 @@
         </div>
         <div class="group">
           <div class="btn-group" role="group">
-            <a data-id="30794" class="follow btn btn-default" href="#"><i class="fa fa-eye"></i> 关注</a>
-            <a title="收藏" class="bookmark  btn btn-default" data-id="30794" href="#"><i class="fa fa-bookmark"></i> 收藏</a>
+            <a class="follow btn btn-default" href="#"><i class="fa fa-eye"></i> 关注</a>
+            <a title="收藏" class="bookmark  btn btn-default" href="#"><i class="fa fa-bookmark"></i> 收藏</a>
           </div>
         </div>
       </div>
@@ -32,9 +32,6 @@
 
 <script>
   $(function(){
-    // $(window).scroll(function() {
-    //  $('.topic_sidebar').stop().animate({top: $(this).scrollTop()});
-    // });
     $('.scroll_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
     $('.scroll_bottom').click(function(){$('html,body').animate({scrollTop: $('footer').offset().top}, 800);});
   })

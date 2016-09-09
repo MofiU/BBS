@@ -1,13 +1,14 @@
 module UserAction
+
   def favorited_topics
-    Topic.where(id: favorite_topic_ids_array)
+    Topic.where(id: favorite_topic_ids)
   end
 
   # 收藏话题
   def favorite_topic(topic_id)
     return false if topic_id.blank?
     return false if favorited_topic?(topic_id)
-    self.favorite_topic_ids = "#{favorite_topic_ids},#{topic_id}"
+    self.favorite_topic_ids << topic_id
     self.save!
     true
   end
@@ -15,35 +16,28 @@ module UserAction
   # 取消对话题的收藏
   def unfavorite_topic(topic_id)
     return false if topic_id.blank?
-    array = favorite_topic_ids_array
-    array.delete(topic_id.to_s)
-    self.favorite_topic_ids = array.join(',')
+    self.favorite_topic_ids.delete(topic_id.to_s)
     save
     true
   end
 
   # 是否收藏过话题
   def favorited_topic?(topic_id)
-    favorite_topic_ids_array.include?(topic_id)
+    favorite_topic_ids.include?(topic_id.to_s)
   end
 
   def favorite_topics_count
-    favorite_topic_ids_array.size
+    favorite_topic_ids.count
   end
-
-  def favorite_topic_ids_array
-    favorite_topic_ids.split(',').reject { |f| f.empty? }
-  end
-
 
   def follow(user_id)
     return false if user_id.blank?
     return false if follow_user?(user_id)
     ActiveRecord::Base.transaction do
-      self.following_ids = "#{following_ids},#{user_id}"
+      self.following_ids << user_id.to_i
       save!
       user = User.find user_id
-      user.follower_ids = "#{user.follower_ids},#{self.id}"
+      user.follower_ids << id
       user.save!
       true
     end
@@ -52,54 +46,65 @@ module UserAction
   def unfollow(user_id)
     return false if user_id.blank?
     ActiveRecord::Base.transaction do
-      array = following_ids_array
-      array.delete(user_id.to_s)
-      self.following_ids = array.join(',')
+      self.following_ids.delete(user_id.to_i)
       save!
       user = User.find user_id
-      array = user.follow_ids_array
-      array.delete(self.id.to_s)
-      user.follower_ids = array.join(',')
+      user.follower_ids.delete(id)
       user.save!
       true
     end
   end
 
-  def follow_ids_array
-    follower_ids.split(',').reject { |f| f.empty? }
+  def like_topic(topic_id)
+    return false if topic_id.blank?
+    return false if like_topic?(topic_id)
+    topic = Topic.find(topic_id)
+    topic.liked_user_ids << id
+    topic.likes_count += 1
+    topic.save!
+    true
   end
 
-  def follow_count
-    follow_ids_array.count
+  def unlike_topic(topic_id)
+    return false if topic_id.blank?
+    topic = Topic.find(topic_id)
+    topic.liked_user_ids.delete(id)
+    topic.likes_count -= 1
+    topic.save!
+    true
   end
 
-  def following_ids_array
-    following_ids.split(',').reject { |f| f.empty? }
+  def follow_topic(topic_id)
+    return false if topic_id.blank?
+    return false if follow_topic?(topic_id)
+    topic = Topic.find(topic_id)
+    topic.follower_ids << id
+    topic.save!
+    true
   end
 
-  def following_count
-    following_ids_array.count
+  def unfollow_topic(topic_id)
+    return false if topic_id.blank?
+    topic = Topic.find(topic_id)
+    topic.follower_ids.delete(id)
+    topic.save!
+    true
   end
 
   def block(user_id)
     return false if user_id.blank?
-    return false if block_user?(user_id.to_s)
-    self.blocked_user_ids = "#{blocked_user_ids},#{user_id}"
+    return false if block_user?(user_id)
+    self.blocked_user_ids << user_id
     save
     true
   end
 
   def unblock(user_id)
     return false if user_id.blank?
-    array = block_user_ids_array
-    array.delete(user_id.to_s)
-    self.blocked_user_ids = array.join(',')
+    self.blocked_user_ids.delete(user_id)
     save
   end
 
-  def block_user_ids_array
-    blocked_user_ids.split(',').reject { |f| f.empty? }
-  end
 
   def calendar_data
     user = self
@@ -116,15 +121,23 @@ module UserAction
   end
 
   def follow_user?(user_id)
-    following_ids_array.include? user_id.to_s
+    following_ids.include? user_id
   end
 
   def block_user?
-    block_user_ids_array.include? user_id.to_s
+    block_user_ids.include? user_id
   end
 
   def has_follow?(user)
-    following_ids_array.include? user.id.to_s
+    following_ids.include? user.id
+  end
+
+  def like_topic?(topic_id)
+    Topic.find(topic_id).liked_user_ids.include? id
+  end
+
+  def follow_topic?(topic_id)
+    Topic.find(topic_id).follower_ids.include? id
   end
 
 end

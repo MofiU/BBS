@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818041822) do
+ActiveRecord::Schema.define(version: 20160901013651) do
 
   create_table "nodes", force: :cascade do |t|
     t.string   "category",   null: false
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20160818041822) do
     t.datetime "deleted_at"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["title"], name: "index_notes_on_title", unique: true
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -45,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160818041822) do
     t.integer  "topic_id"
     t.string   "title"
     t.text     "body"
-    t.integer  "liked_user_ids"
+    t.string   "liked_user_ids"
     t.integer  "likes_count",    default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -80,8 +79,8 @@ ActiveRecord::Schema.define(version: 20160818041822) do
     t.integer  "repelies_count", default: 0,     null: false
     t.integer  "replies_count",  default: 0,     null: false
     t.integer  "likes_count",    default: 0
-    t.string   "follower_ids",   default: ""
-    t.string   "liked_user_ids", default: ""
+    t.string   "follower_ids"
+    t.string   "liked_user_ids"
     t.boolean  "closed",         default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -98,10 +97,10 @@ ActiveRecord::Schema.define(version: 20160818041822) do
     t.text     "bio"
     t.integer  "topics_count",           default: 0,  null: false
     t.integer  "replies_count",          default: 0,  null: false
-    t.string   "favorite_topic_ids",     default: ""
-    t.string   "blocked_user_ids",       default: ""
-    t.string   "following_ids",          default: ""
-    t.string   "follower_ids",           default: ""
+    t.string   "favorite_topic_ids"
+    t.string   "blocked_user_ids"
+    t.string   "following_ids"
+    t.string   "follower_ids"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -116,6 +115,11 @@ ActiveRecord::Schema.define(version: 20160818041822) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

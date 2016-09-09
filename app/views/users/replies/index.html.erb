@@ -1,3 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if @replies.present? %>
+      <ul class="replies">
+        <% @replies.each do |reply| %>
+          <li class="reply">
+            <div class="title">
+              <%= link_to reply.topic.title, topic_path(reply.topic) %>
+              <span class="time"><%= time_ago_in_words(reply.created_at) %> ago</span>
+            </div>
+            <div class="body">
+              <%= reply.body %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="panel-footer"><%= paginate @replies %></div>
+</div>
+
 <script>
 $(function () {
   $(".user_replies").addClass('active')

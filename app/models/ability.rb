@@ -35,7 +35,7 @@ class Ability
   end
 
   def roles_for_topics
-    can [:favorite, :unfavorite, :follow, :unfollow], Topic
+    can [:favorite, :unfavorite, :follow, :unfollow, :favorites, :like, :unlike], Topic
     can [:update, :create, :close], Topic, user_id: user.id
     can :destroy, Topic do |topic|
         topic.user_id == user.id && topic.replies_count == 0

@@ -1,5 +1,5 @@
 <%= simple_form_for @note do |f|%>
-  <ul class="nav nav-pills">
+  <ul class="nav nav-pills nav-justified"  style="margin-bottom: 20px;">
     <li role="presentation" class="active edit"><a href="#">Edit</a></li>
     <li role="presentation" class="preview"><a href="#">Preview</a></li>
   </ul>
@@ -14,3 +14,19 @@
     </div>
   </div>
 <% end %>
+
+
+<script>
+$(document).ready(function () {
+  function autosize(textarea) {
+    $(textarea).height(500); // temporarily shrink textarea so that scrollHeight returns content height when content does not fill textarea
+    $(textarea).height($(textarea).prop("scrollHeight"));
+  }
+  $(document).on("input", "textarea", function() {
+    autosize(this);
+  });
+  $("textarea").each(function () {
+    autosize(this);
+  });
+});
+</script>

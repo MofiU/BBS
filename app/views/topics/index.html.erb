@@ -1,41 +1,10 @@
-<div class="row">
-  <div class="col-sm-9">
-    <div class="panel panel-default topics">
-      <div class="panel-heading">Topics</div>
-      <div class="panel-body">
-        <% if @topics.present? %>
-          <% @topics.includes(:user).each do |topic| %>
-            <div class="media topic">
-              <div class="avatar media-right">
-                <%= link_to user_path(topic.user.id) do %>
-                  <%= user_photo topic.user,  'avatar' %>
-                <% end %>
-              </div>
-              <div class="media-body" style="padding-left: 20px">
-                <div class="media-heading"><h5><b><%= link_to topic.title, topic_path(topic) %></b></h5></div>
-                <div class="media-body info"><%= "由#{topic.user.username}于#{topic.updated_at}创建" %></div>
-                <div class="media-right count"><%= link_to topic.replies_count, topic_path(topic) %> </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="panel-footer">分页插件。。。</div>
-    </div>
+<div class="panel panel-default topics">
+  <div class="panel-heading">Topics</div>
+  <div class="panel-body">
+    <%= render @topics %>
   </div>
-  <div class="col-sm-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <a href="<%= new_topic_path %>" class="btn btn-success btn-block">新建 Topic</a>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">小贴士</div>
-      <div class="panel-body">
-        长得丑的不准发帖！
-      </div>
-    </div>
-  </div>
+  <div class="panel-footer"><%= paginate @topics %></div>
 </div>
+
 
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bbs</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/shared/header' %>
+    <div class="main">
+      <%= notice_message %>
+      <div class="row">
+        <div class="col-sm-9">
+          <%= yield %>
+        </div>
+        <div class="col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <a href="<%= new_topic_path %>" class="btn btn-success btn-block">新建 Topic</a>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">小贴士</div>
+            <div class="panel-body">
+              猎头：您好，我这里有个岗位适合您，想换工作吗？ <br>
+              我：暂时不考虑。 <br>
+              猎头：您有讨厌的领导吗，把他联系方式给我，我帮你把他挖走！
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/shared/footer' %>
+  </body>
+</html>

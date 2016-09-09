@@ -1,19 +1,20 @@
 class TopicsController < ApplicationController
+  layout 'topic', only: [:favorites, :index]
 
   before_action :authenticate_user!, except: [:index, :show]
 
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy,
-                                            :favorite, :unfavorite, :follow, :unfollow]
+  # before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy,
+  #                                           :favorite, :unfavorite, :follow, :unfollow]
 
   load_and_authorize_resource
 
   def index
-    @topics = Topic.all
+    @topics = Topic.order(created_at: :desc).includes(:user).page params[:page]
   end
 
   def show
     @reply = Reply.new
-    @replies = @topic.replies
+    @replies = @topic.replies.includes(:user)
   end
 
   def new
@@ -36,7 +37,7 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to topic_url(@topic)
+      redirect_to topic_url(@topic), notice: '帖子更新成功'
     else
       render 'edit'
     end
@@ -48,10 +49,19 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic.destroy
-    current_user.topics_count -= 1
-    current_user.save!
-    redirect_to topics_path
+    if @topic.destroy
+      current_user.topics_count -= 1
+      current_user.save!
+      User.all.each do |user|
+        if user.favorite_topic_ids.include? params[:id]
+          user.favorite_topic_ids.delete(params[:id])
+          user.save!
+        end
+      end
+      redirect_to topics_path, notice: '删帖成功'
+    else
+      redirect_to topics_path, alert: '程序异常，删帖失败'
+    end
   end
 
   def favorite
@@ -64,11 +74,29 @@ class TopicsController < ApplicationController
   end
 
   def follow
-
+    current_user.follow_topic(params[:id])
+    @topic.reload
   end
 
   def unfollow
+    current_user.unfollow_topic(params[:id])
+    @topic.reload
+    render 'follow'
+  end
 
+  def favorites
+    @topics = current_user.favorited_topics.includes(:user).order(created_at: :desc).page params[:page]
+  end
+
+  def like
+    current_user.like_topic(params[:id])
+    @topic.reload
+  end
+
+  def unlike
+    current_user.unlike_topic(params[:id])
+    @topic.reload
+    render 'like'
   end
 
   private

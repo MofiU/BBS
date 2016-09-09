@@ -14,5 +14,6 @@ module Bbs
 
     config.time_zone = 'Beijing'
     config.autoload_paths +=%W(#{config.root}/lib #{config.root}/lib/utils)
+    # config.active_record.belongs_to_required_by_default = true
   end
 end

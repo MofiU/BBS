@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     # omniauth_callbacks: 'users/omniauth_callbacks',
     passwords: 'users/passwords',
-    conformations: 'users/conformations',
+    confirmations: 'users/confirmations',
     unlocks: 'users/unlocks'
   }
 
@@ -25,13 +25,23 @@ Rails.application.routes.draw do
       post :follow
       delete :unfollow
       post :close
+      post :like
+      delete :unlike
+    end
+    collection do
+      get 'favorites'
     end
     resources :replies
   end
 
   resources :notes
   resources :users
-  resources :replies
+  resources :replies do
+    member do
+      post 'like'
+      delete 'unlike'
+    end
+  end
 
   namespace :users do
     scope ':id' do

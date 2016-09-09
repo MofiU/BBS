@@ -8,8 +8,8 @@ class CreateTopics < ActiveRecord::Migration[5.0]
       t.integer         :repelies_count,        null: false,      default: 0
       t.integer         :replies_count,         default: 0,       null: false
       t.integer         :likes_count,           default: 0
-      t.string          :follower_ids,          default: ""
-      t.string          :liked_user_ids,        default: ""
+      t.string          :follower_ids
+      t.string          :liked_user_ids
       t.boolean         :closed,                default: false
       t.timestamps
     end

@@ -14,10 +14,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       ## User Other Info
       t.integer  "topics_count",                      default: 0,                  null: false
       t.integer  "replies_count",                     default: 0,                  null: false
-      t.string  "favorite_topic_ids",                 default: ""
-      t.string  "blocked_user_ids",                   default: ""
-      t.string  "following_ids",                      default: ""
-      t.string  "follower_ids",                       default: ""
+      t.string  "favorite_topic_ids"
+      t.string  "blocked_user_ids"
+      t.string  "following_ids"
+      t.string  "follower_ids"
 
       ## Recoverable
       t.string   :reset_password_token

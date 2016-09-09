@@ -52,6 +52,7 @@ img {
 
 textarea{
   height: 100px;
+  resize: none;
 }
 
 .avatar { text-align:center; }
@@ -196,4 +197,9 @@ a:hover {
     border-top-color: #eee;
     background: #fafafa;
   }
+}
+
+.pagination{
+  margin: 0px;
+  padding: 0px;
 }

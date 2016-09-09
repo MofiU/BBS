@@ -44,6 +44,8 @@ end
 ## 验证码，头像
 gem 'letter_avatar'
 
+## 翻页插件
+gem 'kaminari'
 
 #role and premisssion
 gem 'devise'

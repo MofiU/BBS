@@ -2,7 +2,7 @@
   <div class="col-sm-9">
     <div id="topics"  class="panel panel-default">
       <div class="panel-heading">
-        <%= @topic.created_at %>
+        <%= format_time @topic.created_at %>
         <%= link_to users_topic_path(@topic), method: :delete do %><i class="glyphicon glyphicon-trash"></i> <% end %>
         <%= link_to edit_users_topic_path(@topic) do %><i class="glyphicon glyphicon-pencil"></i> <% end %>
       </div>

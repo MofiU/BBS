@@ -6,11 +6,20 @@ class RepliesController < ApplicationController
     if @reply.save
       @topic.replies_count += 1
       @topic.save!
-      flash[:notice] = "回复成功"
+      current_user.replies_count += 1
+      current_user.save!
+      redirect_to topic_path(@topic), notice: '回复成功'
     else
-      flash[:alert] = "回复失败"
+      redirect_to topic_path(@topic), alert: '回复失败'
     end
-    redirect_to topic_path(@topic)
+  end
+
+  def like
+
+  end
+
+  def unlike
+
   end
 
   private
@@ -21,7 +30,6 @@ class RepliesController < ApplicationController
 
   def set_topic
     @topic = Topic.find(reply_params[:topic_id])
-
   end
 
   def reply_params
