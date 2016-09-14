@@ -55,8 +55,15 @@ gem 'font-awesome-sass'
 gem 'activerecord-session_store'
 gem 'simple_form'
 
+## 检测代码质量
 gem "rubycritic", :require => false
 
+
+## markdown
+
+gem 'redcarpet'
+gem 'rouge'
+gem 'auto-space'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

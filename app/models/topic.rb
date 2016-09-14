@@ -7,6 +7,6 @@ class Topic < ApplicationRecord
   serialize :liked_user_ids, Array
   serialize :follower_ids, Array
   scope :recently, ->{order(created_at: :desc).limit(10)}
-  scope :cream, ->{where(cream: true, deleted: nil)}
+  scope :creams, ->{where(cream: true, deleted: nil)}
   scope :active, ->{where(deleted_at: nil)}
 end

@@ -17,7 +17,7 @@
       <div class="panel-body">
         <div class="media">
           <div class="media-body">
-            <div class="media-body"><%= simple_format @topic.body %></div>
+            <div class="media-body"><%= markdown(@topic.body) %></div>
           </div>
         </div>
       </div>
@@ -59,19 +59,26 @@
           </div>
         </div>
       <% end %>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">回帖</div>
-      <div class="panel-body">
-        <%= simple_form_for @reply do |f| %>
-          <%= f.input :body, label: false %>
-          <%= f.input :topic_id, as: :hidden, :input_html => { :value => @topic.id }  %>
-          <%= f.button :submit, label: 'Reply', class: 'btn btn-primary' %>
-        <% end %>
+    <% if user_signed_in? %>
+      <div class="panel panel-default">
+        <div class="panel-heading">回帖</div>
+        <div class="panel-body">
+          <%= simple_form_for @reply do |f| %>
+            <%= f.input :body, label: false %>
+            <%= f.input :topic_id, as: :hidden, :input_html => { :value => @topic.id }  %>
+            <%= f.button :submit, label: 'Reply', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
       </div>
-
-    </div>
-
+    <% else %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div style="padding:20px;" data-turbolinks-action="replace">
+            需要 <%= link_to '登录', user_session_path, class: 'btn btn-primary' %> 后方可回复, 如果你还没有账号请点击这里 <%= link_to '注册', new_user_registration_path, class: 'btn btn-danger' %>。
+          </div>
+        </div>
+      </div>
+    <% end %>
 
   </div>
 
