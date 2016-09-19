@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thoughtbot/paperclip.git
-  revision: 8d08559e965c6b5407beed6e68e6822782efca17
+  revision: 7edb35a2a9a80c9598dfde235c7e593c023fc914
   specs:
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -57,9 +57,11 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    arel (7.1.1)
+    arel (7.1.2)
     ast (2.3.0)
-    autoprefixer-rails (6.4.1)
+    auto-space (0.0.4)
+      activesupport (> 3.0.0)
+    autoprefixer-rails (6.4.1.1)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -70,7 +72,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
-    bullet (5.3.0)
+    bullet (5.4.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.0.5)
@@ -105,7 +107,7 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
-    flay (2.8.0)
+    flay (2.8.1)
       erubis (~> 2.7.0)
       path_expander (~> 1.0)
       ruby_parser (~> 3.0)
@@ -195,7 +197,8 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    reek (4.1.0)
+    redcarpet (3.3.4)
+    reek (4.4.1)
       codeclimate-engine-rb (~> 0.3.1)
       parser (~> 2.3.1, >= 2.3.1.2)
       rainbow (~> 2.0)
@@ -203,15 +206,16 @@ GEM
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rolify (5.1.0)
+    rouge (2.0.6)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
-    rubycritic (2.9.3)
+    rubycritic (2.9.4)
       colorize
-      flay (= 2.8.0)
-      flog (= 4.4.0)
+      flay (~> 2.8)
+      flog (~> 4.4)
       launchy (= 2.4.3)
       parser (= 2.3.1.2)
-      reek (= 4.1.0)
+      reek (~> 4.4)
       ruby_parser (~> 3.8)
       virtus (~> 1.0)
     sass (3.4.22)
@@ -271,6 +275,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store
+  auto-space
   bootstrap-sass
   bullet
   byebug
@@ -290,7 +295,9 @@ DEPENDENCIES
   rails-assets-bootstrap-table!
   rails-assets-cal-heatmap!
   rails-assets-d3 (= 3.5.17)!
+  redcarpet
   rolify
+  rouge
   rubycritic
   sass-rails (~> 5.0)
   simple_form

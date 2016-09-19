@@ -1,4 +1,26 @@
+require 'redcarpet'
+
 module ApplicationHelper
+
+  def markdown(text)
+    render_options = {
+      filter_html:     true,
+      hard_wrap:       true,
+      link_attributes: { target: '_blank' }
+    }
+    renderer = HTML.new(render_options)
+
+    extensions = {
+      autolink:           true,
+      fenced_code_blocks: true,
+      lax_spacing:        true,
+      no_intra_emphasis:  true,
+      strikethrough:      true,
+      superscript:        true
+    }
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
+  end
+
   def format_alert_type(flash_type)
     case flash_type
     when 'alert'

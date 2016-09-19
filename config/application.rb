@@ -13,7 +13,9 @@ module Bbs
     # -- all .rb files in that directory are automatically loaded.
 
     config.time_zone = 'Beijing'
-    config.autoload_paths +=%W(#{config.root}/lib #{config.root}/lib/utils)
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/utils)
     # config.active_record.belongs_to_required_by_default = true
+
+    config.action_cable.mount_path = '/cable'
   end
 end

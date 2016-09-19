@@ -10,7 +10,7 @@
         <div class="media">
           <div class="media-body">
             <div class="media-heading"><h5><b><%= @note.title %></b></h5></div>
-            <div class="media-body info"><%= simple_format @note.body %></div>
+            <div class="media-body info"><%= markdown @note.body %></div>
           </div>
         </div>
       </div>
