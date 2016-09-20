@@ -4,7 +4,7 @@
       <a href="javaScript:void(0);" class="btn btn-block btn-sm btn-default scroll_top"><i class="fa fa-arrow-up"></i></a>
       <div class="buttons">
         <div class="likes">
-          <a href="#"><i class="fa fa-heart-o fa-5x"></i><br/> <span><%= @topic.likes_count %> 个赞</span></a>
+          <a href="#"><i class="fa fa-heart-o fa-5x like_topic"></i><br/> <span><%= @topic.likes_count %> 个赞</span></a>
         </div>
         <div class="group">
           <div class="btn-group" role="group">
@@ -19,7 +19,7 @@
         <div class="total">
           共收到 <b><%= @topic.replies_count %></b> 条回复
         </div>
-        <%= link_to '参与回复', '#', class: 'btn btn-success btn-block' %>
+        <%= link_to '参与回复', 'javaScript:void(0);', class: 'btn btn-success btn-block reply_user' %>
       </div>
       <hr>
       <div class="group opts">
@@ -34,5 +34,9 @@
   $(function(){
     $('.scroll_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
     $('.scroll_bottom').click(function(){$('html,body').animate({scrollTop: $('footer').offset().top}, 800);});
+    $('.reply_user').click(function() {
+      $('html,body').animate({scrollTop: $('footer').offset().top}, 800);
+      $( "#reply_body" ).focus();
+    });
   })
 </script>

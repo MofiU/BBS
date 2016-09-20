@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  layout 'topic', only: [:favorites, :index]
+  layout 'topic', only: [:favorites, :index, :creams]
 
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -97,6 +97,10 @@ class TopicsController < ApplicationController
     current_user.unlike_topic(params[:id])
     @topic.reload
     render 'like'
+  end
+
+  def creams
+    @topics = Topic.order(created_at: :desc).includes(:user).page params[:page]
   end
 
   private

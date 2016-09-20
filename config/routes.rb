@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'favorites'
+      get 'creams'
     end
     resources :replies
   end

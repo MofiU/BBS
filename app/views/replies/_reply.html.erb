@@ -22,7 +22,7 @@
           <!-- <a class="edit fa fa-pencil" data-uid="1" title="修改回帖" href="/topics/30925/replies/304274/edit"></a>
           <a data-floor="1" data-login="Rei" title="Reply to this floor" class="btn-reply fa fa-mail-reply" href="#"></a> -->
           </span>
-          <%= like_reply_tag reply %>
+          <%= like_reply_tag reply if current_user %>
       </span>
     </div>
     <div class="markdown">

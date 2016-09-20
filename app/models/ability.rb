@@ -61,6 +61,7 @@ class Ability
 
   def basic_read_only
     can :read, Topic
+    can :creams, Topic
     can :read, Reply
     can :read, Node
   end
