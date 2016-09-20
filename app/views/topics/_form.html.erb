@@ -4,7 +4,7 @@
     <li role="presentation" class="preview"><a href="#">Preview</a></li>
   </ul>
 
-  <%= f.input :node_id, wrapper: :vertical_input_group do %>
+  <%= f.input :node_id, wrapper: :vertical_input_group, label: false do %>
     <div class="input-group-btn">
       <%= f.button :button, '请选择节点...', type: :button, id: 'node-selector-button', 'data-toggle' => "modal", 'data-target' => '#node-selector' %>
     </div><!-- /btn-group -->
@@ -39,7 +39,7 @@
               <div class="node media">
                 <label class="media-left">Ruby</label>
                 <span class="nodes media-body">
-                    <span class="name"><a title="新手问题" data-id="52" href="/topics/node52">新手问题</a></span>
+                    <span class="name"><%= link_to 'sss', 'www.baidu.com', :onclick => "alert('Please no!')" %></span>
                     <span class="name"><a title="JRuby" data-id="54" href="/topics/node54">JRuby</a></span>
                     <span class="name"><a title="部署" data-id="44" href="/topics/node44">部署</a></span>
                     <span class="name"><a title="重构" data-id="29" href="/topics/node29">重构</a></span>
@@ -75,5 +75,6 @@ $(document).ready(function () {
   $("textarea").each(function () {
     autosize(this);
   });
+
 });
 </script>
