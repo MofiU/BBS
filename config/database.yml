@@ -10,7 +10,7 @@ development:
 test:
   adapter: postgresql
   database: daiqpvung3athq
-  host: zengbo01.rnd.laxino.com
+  host: ec2-23-21-219-12.compute-1.amazonaws.com
   port: 5432
   username: qgxjasgwqecorx
   password: xeLdZXjqbMc6CrTEAXDyGG4UlO
@@ -20,7 +20,7 @@ test:
 production:
   adapter: postgresql
   database: daiqpvung3athq
-  host: zengbo01.rnd.laxino.com
+  host: ec2-23-21-219-12.compute-1.amazonaws.com
   port: 5432
   username: qgxjasgwqecorx
   password: xeLdZXjqbMc6CrTEAXDyGG4UlO
