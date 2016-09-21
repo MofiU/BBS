@@ -46,6 +46,10 @@ module ApplicationHelper
     utc_time.strftime('%Y-%m-%d')
   end
 
+  def format_full_time(utc_time)
+    utc_time.strftime('%Y年%m月%d日%H时%M分%S秒')
+  end
+
   def owner?(item)
     return false if item.blank? || current_user.blank?
     if item.is_a?(User)

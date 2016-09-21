@@ -1,0 +1,4 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><%= @notification.title %>  <%= format_full_time @notification.created_at %></div>
+  <div class="panel-body"><%= markdown @notification.body %></div>
+</div>

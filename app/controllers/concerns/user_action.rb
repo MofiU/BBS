@@ -140,4 +140,13 @@ module UserAction
     Topic.find(topic_id).follower_ids.include? id
   end
 
+  def unread_notifications
+    Notification.unreads(self)
+  end
+
+  def unread_count
+    unread_notifications.count
+  end
+
+
 end

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :notes
   has_many :topics
   has_many :replies
+  has_many :notifications
   after_create_commit :empower
   rolify
   # Include default devise modules. Others available are:

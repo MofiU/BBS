@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications
+
   namespace :users do
     scope ':id' do
       resources :topics
