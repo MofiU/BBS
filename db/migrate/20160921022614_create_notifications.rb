@@ -2,7 +2,7 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
   def change
     create_table :notifications do |t|
       t.belongs_to :user
-      t.string :type
+      t.string :categroy
       t.string :title
       t.string :body
       t.integer :sender_id, :default => 10000

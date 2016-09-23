@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  layout 'user', except: :edit
+  layout 'user', except: [:edit, :index]
 
-  before_action :set_user
+  before_action :set_user, except: [:index]
 
   def index
-
+    @users = User.all.page params[:page]
   end
 
   def edit
@@ -58,6 +58,17 @@ class UsersController < ApplicationController
 
   def unblock
     current_user.unblock(params[:id])
+  end
+
+  def grant_user
+    @user.remove_role :admin
+    @user.add_role :user
+    redirect_back(fallback_location: root_path, notice: '操作成功！')
+  end
+
+  def grant_admin
+    @user.add_role :admin
+    redirect_back(fallback_location: root_path, notice: '操作成功！')
   end
 
   private

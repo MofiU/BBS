@@ -39,7 +39,7 @@
         </dd>
         <% if current_user.has_role? :admin %>
           <dd>
-            <h3><%= link_to '成員管理', '#' %></h3>
+            <h3><%= link_to '成員管理', users_path %></h3>
           </dd>
         <% end %>
       <% else %>

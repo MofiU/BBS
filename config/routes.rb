@@ -60,6 +60,8 @@ Rails.application.routes.draw do
       post 'unfollow'
       post 'block'
       post 'unblock'
+      post 'grant_user'
+      post 'grant_admin'
     end
   end
 
