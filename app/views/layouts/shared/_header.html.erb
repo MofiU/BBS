@@ -12,15 +12,8 @@
       <% if user_signed_in? %>
         <dd>
           <h3>
-            <%= link_to 'javascript:void(0)' do %>
-              通知<i></i>
-            <% end %>
+            <%= link_to '通知', notifications_path %>
           </h3>
-          <ul>
-            <li><%= link_to '私信', root_path %></li>
-            <li><%= link_to '评论', root_path %></li>
-            <li><%= link_to '@我', root_path %></li>
-          </ul>
         </dd>
         <dd>
           <h3><%= link_to 'javascript:void(0)' do %>
@@ -46,7 +39,7 @@
         </dd>
         <% if current_user.has_role? :admin %>
           <dd>
-            <h3><%= link_to '成員管理', '#' %></h3>
+            <h3><%= link_to '成員管理', users_path %></h3>
           </dd>
         <% end %>
       <% else %>

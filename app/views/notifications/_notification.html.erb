@@ -1,0 +1,4 @@
+<div class="media notification">
+  <div><%= link_to notification.title, notification_path(notification) %><%= notification.type %> - <%= link_to notification.read == true ? '已读' : '未读', '#', class: 'read' %></div>
+  <div class="pull-right time"><%= time_ago_in_words(notification.created_at) %></div>
+</div>

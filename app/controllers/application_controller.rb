@@ -5,12 +5,15 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
-  rescue_from ActiveRecord::RecordNotFound do
+  rescue_from ActiveRecord::RecordNotFound do |exception|
     redirect_to home_error_404_path
   end
 
-  # rescue_from StandardError do |exception|
-  #   redirect_to home_error_500_path
-  # end
+  rescue_from StandardError do |exception|
+    p '---------------------------------------------------'
+    p exception.message
+    p exception.backtrace
+    redirect_to home_error_500_path
+  end
 
 end
