@@ -24,7 +24,6 @@ class Ability
     roles_for_topics
     roles_for_replies
     roles_for_notes
-    roles_for_photos
     basic_read_only
   end
 
@@ -51,12 +50,6 @@ class Ability
     can :create, Note
     can [:update, :destroy, :read], Note, user_id: user.id
     can :read, Note, public: true
-  end
-
-  def roles_for_photos
-    can :create, Photo
-    can :update, Photo, user_id: user.id
-    can :destroy, Photo, user_id: user.id
   end
 
   def basic_read_only
