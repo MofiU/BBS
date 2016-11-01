@@ -58,25 +58,25 @@
               </div>
 
             </div>
+            <% if current_user %>
+              <% if @user != current_user %>
+                <div class="follow-user row">
+                  <div class="col-xs-6 follow">
+                    <% if current_user.has_follow? @user %>
+                      <%= link_to users_unfollow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>取消关注
+                      <% end %>
 
-            <% if @user != current_user %>
-              <div class="follow-user row">
-                <div class="col-xs-6 follow">
-                  <% if current_user.has_follow? @user %>
-                    <%= link_to users_unfollow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>取消关注
+                    <% else %>
+                      <%= link_to users_follow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>关注<% end %>
+
                     <% end %>
-
-                  <% else %>
-                    <%= link_to users_follow_path(@user), class: "btn btn-primary btn-block", method: :post, remote: true do %> <i class="fa fa-user"></i>关注<% end %>
-
-                  <% end %>
+                  </div>
+                  <div class="col-xs-6 block">
+                    <%= link_to users_block_path(@user), class: "btn btn-block btn-default", method: :post, remote: true do %> <i class="fa fa-eye-slash"></i>屏蔽 <% end %>
+                  </div>
                 </div>
-                <div class="col-xs-6 block">
-                  <%= link_to users_block_path(@user), class: "btn btn-block btn-default", method: :post, remote: true do %> <i class="fa fa-eye-slash"></i>屏蔽 <% end %>
-                </div>
-              </div>
-            <% end %>
-
+              <% end %>
+          <% end %>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">个人说明</div>

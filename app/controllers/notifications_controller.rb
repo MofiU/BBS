@@ -7,7 +7,6 @@ class NotificationsController < ApplicationController
   end
 
   def show
-    p @notification
     @notification.update!(read: true)
   end
 
