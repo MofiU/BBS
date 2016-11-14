@@ -1,6 +1,5 @@
 class Users::TopicsController < Users::ApplicationController
 
-  before_action :get_recent_topics, except: [:create, :destroy]
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :set_user
 
@@ -15,10 +14,6 @@ class Users::TopicsController < Users::ApplicationController
 
   def topic_params
     params.require(:topic).permit(:title, :body)
-  end
-
-  def get_recent_topics
-    @recent_topics = current_user.topics.recently
   end
 
   def set_topic
