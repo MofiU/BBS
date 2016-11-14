@@ -15,8 +15,8 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%= user.id %></td>
-              <th><%= user_photo(user, 'avatar-48') %></th>
+              <td><%= link_to user.id, user_path(user) %></td>
+              <th><%= link_to user_photo(user, 'avatar-48'), user_path(user) %></th>
               <td><%= user.email %></td>
               <td><%= user.username %></td>
               <td><%= format_time user.created_at %></td>

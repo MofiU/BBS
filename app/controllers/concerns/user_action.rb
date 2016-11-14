@@ -93,16 +93,16 @@ module UserAction
 
   def block(user_id)
     return false if user_id.blank?
-    return false if block_user?(user_id)
+    return false if has_block?(user_id)
     self.blocked_user_ids << user_id
-    save
+    save!
     true
   end
 
   def unblock(user_id)
     return false if user_id.blank?
     self.blocked_user_ids.delete(user_id)
-    save
+    save!
   end
 
 
@@ -124,8 +124,8 @@ module UserAction
     following_ids.include? user_id
   end
 
-  def block_user?
-    block_user_ids.include? user_id
+  def has_block?(user_id)
+    blocked_user_ids.include? user_id.to_s
   end
 
   def has_follow?(user)

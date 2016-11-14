@@ -1,0 +1,7 @@
+<% if current_user.has_block? @user.id %>
+  $(".follow-user .block a").html("<i class='fa fa fa-eye-slash'>取消屏蔽")
+  $(".follow-user .block a").attr('href', "<%= users_unblock_path(@user) %>")
+<% else %>
+  $(".follow-user .block a").html("<i class='fa fa-eye-slash'></i>屏蔽")
+  $(".follow-user .block a").attr('href', "<%= users_block_path(@user) %>")
+<% end %>

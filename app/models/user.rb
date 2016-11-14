@@ -5,6 +5,7 @@ class User < ApplicationRecord
   serialize :blocked_user_ids , Array
   serialize :follower_ids , Array
   serialize :following_ids , Array
+  serialize :blocked_user_ids, Array
   has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }
   has_many :notes
   has_many :topics

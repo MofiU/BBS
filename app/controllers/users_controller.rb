@@ -40,7 +40,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def follow
     current_user.follow(params[:id])
     @user.reload
@@ -54,10 +53,12 @@ class UsersController < ApplicationController
 
   def block
     current_user.block(params[:id])
+    @user.reload
   end
 
   def unblock
     current_user.unblock(params[:id])
+    render 'block'
   end
 
   def grant_user
