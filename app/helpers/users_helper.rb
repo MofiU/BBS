@@ -9,5 +9,14 @@ module UsersHelper
     end
   end
 
+  def render_user_operation(current_user, user)
+    if current_user != user
+      if user.has_role? :admin
+        link_to '降级为会员', users_grant_user_path(user), method: :post
+      else
+        link_to '提升为管理员', users_grant_admin_path(user), method: :post
+      end
+    end
+  end
 
 end

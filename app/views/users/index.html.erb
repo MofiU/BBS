@@ -22,13 +22,7 @@
               <td><%= format_time user.created_at %></td>
               <td><%= user.has_role?(:admin) ? '管理员' : '会员' %></td>
               <td>
-                <% if current_user != user %>
-                  <% if user.has_role?(:admin) %>
-                    <%= link_to '降级为会员', users_grant_user_path(user), method: :post %>
-                  <% else %>
-                    <%= link_to '提升为管理员', users_grant_admin_path(user), method: :post %>
-                  <% end %>
-                <% end %>
+                <%= render_user_operation(current_user, user) %>
               </td>
             </tr>
           <% end %>
