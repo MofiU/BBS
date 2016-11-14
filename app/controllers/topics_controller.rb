@@ -9,7 +9,11 @@ class TopicsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @topics = Topic.order(created_at: :desc).includes(:user).page params[:page]
+    if user_signed_in?
+      @topics = Topic.order(created_at: :desc).where.not(user_id: current_user.blocked_user_ids).includes(:user).page params[:page]
+    else
+      @topics = Topic.order(created_at: :desc).includes(:user).page params[:page]
+    end
   end
 
   def show
@@ -100,7 +104,11 @@ class TopicsController < ApplicationController
   end
 
   def creams
-    @topics = Topic.order(created_at: :desc).includes(:user).page params[:page]
+    if user_signed_in?
+      @topics = Topic.order(created_at: :desc).where.not(user_id: current_user.blocked_user_ids).includes(:user).page params[:page]
+    else
+      @topics = Topic.order(created_at: :desc).includes(:user).page params[:page]
+    end
   end
 
   private
