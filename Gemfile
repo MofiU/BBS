@@ -39,6 +39,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-table'
   gem 'rails-assets-d3','3.5.17'
   gem 'rails-assets-cal-heatmap'
+  ## markdown预览
+  gem 'rails-assets-markdown'
 end
 
 ## 验证码，头像

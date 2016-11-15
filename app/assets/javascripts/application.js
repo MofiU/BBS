@@ -17,4 +17,5 @@
 //= require bootstrap-table
 //= require d3
 //= require cal-heatmap
+//= require markdown
 //= require_tree .
