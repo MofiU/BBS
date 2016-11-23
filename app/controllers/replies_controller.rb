@@ -1,6 +1,6 @@
 class RepliesController < ApplicationController
-  before_action :set_reply, except: [:index, :show, :create]
-  before_action :set_topic
+  before_action :set_reply, only: [:like, :unlike]
+  before_action :set_topic, only: :create
   def create
     @reply = Reply.new(body: reply_params[:body], topic_id: @topic.id, user_id: current_user.id)
     if @reply.save
@@ -25,7 +25,7 @@ class RepliesController < ApplicationController
   private
 
   def set_reply
-    @reply = Reply.find(reply_params[:id])
+    @reply = Reply.find(params[:id])
   end
 
   def set_topic
