@@ -4,7 +4,6 @@
     <li role="presentation" class="btn btn-default">Preview</li>
   </ul>
   <%= f.input :title, label: false, placeholder: 'title' %>
-  <%#= f.input :body, label: false %>
   <div class="row">
       <div class="col-md-6">
         <%= f.input :body, label: false, input_html: {"oninput" => "this.editor.update()", style: "height: 500px;"} %>

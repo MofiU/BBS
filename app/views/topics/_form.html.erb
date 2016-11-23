@@ -11,15 +11,12 @@
     <%= f.input :title, label: false, placeholder: '在这里填写标题' %>
   <% end %>
 
-  <%#= f.input :title, label: false, placeholder: 'title' %>
     <div class="row">
       <div class="col-md-6">
         <%= f.input :body, label: false, input_html: {"oninput" => "this.editor.update()", style: "height: 500px;"} %>
       </div>
       <div id="preview" class="col-md-6" style="word-break: break-all;"> </div>
     </div>
-  <%#= f.input :body, label: false, input_html: {"oninput" => "this.editor.update()"} %>
-  <!-- <div id="preview"> </div> -->
   <div class="row">
     <div class="col-sm-3">
       <%= f.button :submit, class: 'btn btn-primary btn-block' %>
