@@ -14,6 +14,10 @@ module Bbs
 
     config.time_zone = 'Beijing'
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/utils)
+
+    # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
     # config.active_record.belongs_to_required_by_default = true
 
     config.action_cable.mount_path = '/cable'
