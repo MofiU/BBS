@@ -65,9 +65,8 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-
+  mount API::V1::Base => '/api'
+  mount GrapeSwaggerRails::Engine => '/api'
 
   match '*path', via: :all, to: 'home#error_404'
 end

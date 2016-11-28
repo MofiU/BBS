@@ -67,11 +67,19 @@ gem 'redcarpet'
 gem 'rouge'
 gem 'auto-space'
 
+
+## grape api
+gem 'grape-swagger-rails'
+gem 'grape-swagger'
+gem 'grape-swagger-entity'
+gem 'grape-swagger-representable'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3'
   gem 'byebug', platform: :mri
   gem "bullet"
+  gem "rails-erd"
 end
 
 group :development do
