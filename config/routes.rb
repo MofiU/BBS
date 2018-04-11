@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'credit_cards/index'
+
   root 'home#index'
   namespace :home do
     get 'error_404'
